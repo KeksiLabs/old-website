@@ -17,6 +17,7 @@ We have done few security audits and love pentesting. We can teach about unit-te
 
 ## Skillset
 We have at least 3 years of production experience in these technologies.
+
 * [Docker](https://www.docker.com/) for packaging applications for easier development and distribution.
 * [Nginx](https://www.nginx.com/resources/wiki/) is just the best web server you can have. It's so versatile and fast.
 * [Redis](https://redis.io/) is awesome KV-store which we like to use especially for caching.
@@ -25,6 +26,7 @@ We have at least 3 years of production experience in these technologies.
 * [Consul](https://www.consul.io/) for service discovery and active monitoring.
 
 This tech is so new but we have managed to try these out with great success:
+
 * [Flynn](https://flynn.io/) helps running containerized software in your own clusters.
 * [Elasticsearch](https://www.elastic.co/products/elasticsearch) is much cool way for searching stuff from dynamic datasets.
 * [Kubernetes](http://kubernetes.io/) is for the bigger container deployments. It's quite awesome.
