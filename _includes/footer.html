@@ -2,8 +2,29 @@
 <script src="{{ "/js/katex_init.js" | prepend: site.baseurl }}"></script>
 {% endif %}
 
-{% if site.theme_settings.footer_text %}
-<footer class="site-footer">
-	<p class="text">{{ site.theme_settings.footer_text }}</p>
+<footer class="site-footer container">
+
+  <div class="row">
+    <div class="column">
+
+        <div id="contact" class="footer-content vcard" itemscope itemtype="http://schema.org/Organization">
+           <h1>Contact Us</h1>
+           <div><a class="url fn" itemprop="name" href="https://keksi.io/">Keksi Labs Oy</a></div>
+           <div><span itemprop="taxID">2734524-4</span></div>
+           <a class="email" itemprop="email" href="mailto:hello@keksi.io">hello@keksi.io</a>
+           <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
+             <span itemprop="addressLocality" class="locality">Tampere</span>, <span itemprop="addressCountry" class="country-name">Finland</span>
+           </div>
+        </div>
+
+    </div>
+    <div class="column">
+        <div class="footer-content">
+            <h1>What we do?</h1>
+            <p>Keksi is web solutions agency which uses latest open source tools to provide scalable web platforms. We believe in <strong>testing</strong>, <strong>monitoring</strong> and <strong>automation</strong>.</p>
+            <p>Because nobody wants to lose their good night's sleep worrying about crashing servers.</p>
+            <p>
+        </div>
+    </div>
+  </div>
 </footer>
-{% endif %}

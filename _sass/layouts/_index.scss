@@ -1,13 +1,26 @@
 // Header text feature
+
+
 .call-out {
   @extend %padding-regular;
   display: inline-block;
   width: 100%;
   background-color:$header-desc-background-color;
   background-size: cover;
-  font-size: 1.2em;
+  font-size: $callout-fontsize;
   text-align: center;
   color: $header-desc-text-color;
+}
+@media screen and (max-width: 900px) {
+    .call-out {
+        font-size: $callout-fontsize * 0.75;
+    }
+}
+@media screen and (max-width: 600px) {
+    .call-out {
+        font-size: $callout-fontsize * 0.5;
+        padding: 7.5% 7.5%;
+    }
 }
 .call-out p:last-child {
   margin-bottom: 0;
