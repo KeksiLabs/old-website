@@ -175,6 +175,7 @@ $ pip install ansible
 You can use any user which is already setupped in the servers. When starting with the new servers it's usually `root`.
 
 This deploys all provided users with ansible:
+
 ```console
 $ ansible-playbook -i inventory users.yml -u root --ask-pass
 ```
