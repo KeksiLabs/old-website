@@ -24,9 +24,13 @@ The solution is to keep record of all of the granted users in git and use ansibl
 
 This is passwordless solution for remote server access with ssh.
 
-### Example with ansible
+If you want to see full real world example look into our github:
 
-Here's quick examle how to do this with ansible. If you want to see full blown real world example look into our github: [KeksiLabs/ansible-user-management-example](https://github.com/KeksiLabs/ansible-user-management-example).
+[KeksiLabs/ansible-user-management-example](https://github.com/KeksiLabs/ansible-user-management-example).
+
+### Tutorial for ansible and git
+
+Here's quick example for how to do this with ansible. More advanced users should see the provided repository mentioned earlier.
 
 ### Step 1. Create a project
 ```console
@@ -196,4 +200,6 @@ We recommend Github, Gitlab and Bitbucket. This repository doesn't contain anyth
 ## Congratulations
 
 You are now managing all of your users with ansible. When you need to have more users just add them into the users array and deploy again. Remember to share your changes with your coworkers and teach them how to use this setup.
+
+If you want to learn more you should head into our example repo: [KeksiLabs/ansible-user-management-example](https://github.com/KeksiLabs/ansible-user-management-example).
 
