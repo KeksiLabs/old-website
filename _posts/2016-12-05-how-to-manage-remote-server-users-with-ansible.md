@@ -18,7 +18,11 @@ Many developers also won't understand how dangerous it is to paste the same root
 
 ## Ansible and ssh keys to the rescue
 
-We in Keksi Labs have helped multiple smaller companies to manage this problem with configuration management. Just keep record of all of the granted access levels in git and use ansible to deploy the changes.
+We in Keksi Labs have helped multiple smaller companies to manage this problem with configuration management.
+
+The solution is to keep record of all of the granted users in git and use ansible to deploy all of the changes.
+
+This is passwordless solution for remote server access with ssh.
 
 ### Example with ansible
 
