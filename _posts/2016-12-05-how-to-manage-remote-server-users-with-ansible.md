@@ -43,7 +43,8 @@ git init .
 
 Copy this provided `yml` ansbile config into file named `users.yml`.
 
-Let's see what this does
+Let's see what this does:
+
 * It creates new group called `infra_admin` and gives it sudo privileges.
 * It checks that provided users exist in the target machines with their ssh keys
 * It deletes users which should be absent
