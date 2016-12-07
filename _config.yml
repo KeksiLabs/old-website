@@ -5,14 +5,32 @@ url: "https://keksi.io" # the base hostname & protocol for your site
 # Pretty urls thank you
 permalink: pretty
 
+# Default values for missing data in posts
+defaults:
+  category: news
+  author: hello@keksi.io
+
+# All authors
+authors:
+  onnimonni:
+    email: onni@keksi.io
+    name: Onni Hakala
+    twitter: koodimonni
+    github: onnimonni
+    uri: https://keybase.io/onnimonni
+
+settings:
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
   # Meta
-  title: Keksi Labs
+  title: Keksi.io
+  name: Keksi Labs
+  legal_name: Keksi Labs Oy
+
   avatar: keksi-labs-logo.png
-  avatar_alt_text: Cookie
+  avatar_alt_text: Cookie Logo
   gravatar: # Email MD5 hash
-  description: "Hacky Cloud Engineering" # used by search engines
+  description: "Full speed ahead in Web engineering" # used by search engines
 
   # Header and footer text
   header_text: >
@@ -20,7 +38,7 @@ theme_settings:
   header_text_feature_image:
 
   # Icons
-  rss: false
+  rss: true
   email_address: hello@keksi.io
   behance:
   bitbucket:
@@ -66,16 +84,12 @@ theme_settings:
 paginate: 5
 paginate_path: "blog/page:num"
 
-# Default categories (in order) to appear in the navigation
-sections: [
-  ['tutorials', 'Tutorials']
-]
-
 # Exclude non-site files
 exclude: ['bin', 'LICENSE', 'CNAME', 'README.md']
 
 # SYNTAX HIGHLIGHTING
 markdown: kramdown
+
 # !github-pages! mandatory › https://help.github.com/articles/using-jekyll-with-pages/#configuration-settings-you-cannot-change
 # Since Jekyll 3 the default highlighter is Rouge (replaced Pygments.rb in v44)
 highlighter: rouge
@@ -97,11 +111,13 @@ kramdown:
       line_numbers: false
     block:
       line_numbers: false
-      start_line: 1
+
 # BUILD SETTINGS
 sass:
   sass_dir: _sass
   style: :compressed
+
 gems:
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-last-modified-at
