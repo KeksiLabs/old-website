@@ -15,13 +15,12 @@ layout: null
     <email>{{ site.theme_settings.email_address }}</email>
   </author>
 
-  {% for post in site.posts %}
+  {% for post in site.posts limit:15 %}
   <entry>
     <id>{{ post.id | prepend: site.baseurl | prepend: site.url }}</id>
     <link type="text/html" rel="alternate" href="{{ post.url | prepend: site.baseurl | prepend: site.url }}"/>
     <title>{{ post.title }}</title>
     <published>{{ post.date | date_to_xmlschema }}</published>
-    <updated>{{ post.last_modified_at | date_to_xmlschema }}</updated>
     <author>
       <name>{{ site.authors[post.author].name }}</name>
       <uri>{{ site.authors[post.author].uri }}</uri>
