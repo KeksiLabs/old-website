@@ -33,6 +33,7 @@ If you want to see full real world example look into our github:
 Here's quick example for how to do this with ansible. More advanced users should see the provided repository mentioned earlier.
 
 ### Step 1. Create a project
+
 ```console
 $ mkdir user-management-ansible
 $ cd user-management-ansible

@@ -21,7 +21,9 @@ This was the starting point:
 ![Keksi.io Mobile Menu without flexbox]({{ site.baseurl }}/img/content/2016/keksi-io-mobile-menu-without-flex.png)
 
 ## Related html sctructure
+
 Here you can see the related structure:
+
 ```html
 <header class="site-header">
     <div class="branding">
