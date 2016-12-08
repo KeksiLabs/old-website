@@ -2,7 +2,10 @@
 require 'yaml'
 require 'fileutils'
 
-# This matches the frotmatter block
+# This matches the frotmatter block like:
+# ---
+# key: value
+# ---
 YAML_FRONT_MATTER_REGEXP = /\A---(.|\n)*?---/m
 
 def replacePostModifiedTime(filename)
