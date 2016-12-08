@@ -49,7 +49,6 @@ end
 puts "Running modifiedDate hook..."
 # Search for modified posts
 Dir.glob("#{__dir__}/../{*,*/*}.md") do |file|
-    puts file
     next if File.basename(file.downcase) == "readme.md"
     replacePostModifiedTime(file)
 end
