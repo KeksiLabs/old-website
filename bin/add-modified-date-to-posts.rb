@@ -10,16 +10,21 @@ def replacePostModifiedTime(filename)
 
     content = file.read
 
-    yml = YAML.load(content)
+    # Stop when there's parsing errors
+    begin
+        yml = YAML.load(content)
+    rescue Psych::SyntaxError
+        return
+    end
 
     mtime = file.mtime
 
     # Stop if file is not modified
-    return if yml['modifiedDate'] === mtime
+    return if yml['last_modified_at'] === mtime
 
     puts "Setting modifiedDate to #{File.basename(filename)}"
 
-    yml['modifiedDate'] = mtime
+    yml['last_modified_at'] = mtime
 
     frontmatter = "---\n"
 
@@ -43,7 +48,9 @@ end
 
 puts "Running modifiedDate hook..."
 # Search for modified posts
-Dir.glob("#{__dir__}/../_posts/**/*.md") do |file|
+Dir.glob("#{__dir__}/../{*,*/*}.md") do |file|
+    puts file
+    next if File.basename(file.downcase) == "readme.md"
     replacePostModifiedTime(file)
 end
 

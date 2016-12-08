@@ -3,7 +3,7 @@ layout: default
 ---
 <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" itemprop="blogPost" {% if page.feature-img %}class="feature-image"{% endif %}>
   <header style="background-image: url('{{ site.baseurl }}/{{ page.feature-img }}')">
-    <h1 class="title">{{ page.title }}</h1>
+    <h1 itemprop="headline" class="title">{{ page.title }}</h1>
     <div class="post-meta">
         <span class="visually-hidden-mobile">Written by</span> <span class="entry-author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><a href="{{ site.authors[page.author].uri }}" title="Posts by {{ site.authors[page.author].name }}" rel="author" class="url fn n" itemprop="url">
         {% if site.authors[page.author].gravatar %}
@@ -18,20 +18,12 @@ layout: default
             {% for tag in page.tags %}{% if forloop.first %}<strong>{{tag}}</strong>{% elsif forloop.last %} and <strong>{{tag}}</strong>{% else %}, <strong>{{tag}}</strong>{% endif %}{% endfor %}.
         </p>
         {% endif %}
-        {% if page.category %}
-        <span itemprop="articleSection" class="hidden">{{ page.category }}</span>
-        {% endif%}
-        <span itemprop="wordCount" class="hidden">{{ page.content | number_of_words }}</span>
     </div>
   </header>
   <section itemprop="articleBody" class="post-content">{{ content }}</section>
-  {% if page.modifiedDate%}
-  <small class="footnotes">
-    <i class="fa fa-info-circle"></i>
-    This post was last updated on:
-    <time class="entry-modified modified" datetime="{{ page.modifiedDate | date: "%Y-%m-%dT%H:%M:%S%z" }}" itemprop="dateModified" title="{{ page.modifiedDate | date: "%A, %B %e, %Y" }}">{{ page.modifiedDate | date: "%B %-d, %Y" }}</time>
-  </small>
-  {% endif %}
+
+  {% include footnotes.html %}
+
 </article>
 
 {% comment %} <!-- Post navigation --> {% endcomment %}

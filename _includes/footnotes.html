@@ -1,0 +1,17 @@
+<small class="footnotes">
+    {% if page.last_modified_at %}
+    <i class="fa fa-info-circle"></i>
+    This post was last updated on:
+    <time class="entry-modified modified" datetime="{{ page.last_modified_at | date: "%Y-%m-%dT%H:%M:%S%z" }}" itemprop="dateModified" title="{{ page.last_modified_at | date: "%A, %B %e, %Y" }}">{{ page.last_modified_at | date: "%B %-d, %Y" }}</time>.
+    {% endif %}
+    It
+    {% if page.category %}
+    is published in <span itemprop="articleSection">{{ page.category }}</span> category and it
+    {% endif%}
+    contains
+    <span itemprop="wordCount" >{{ page.content | markdownify | strip_html | number_of_words }}</span> words.
+    <span itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organisation">
+        <img src="{{ 'logo.png' | prepend: site.baseurl | prepend: site.url }}">
+    </span>
+    <a itemprop="mainEntityOfPage" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}" ></a>
+</small>
