@@ -41,6 +41,7 @@ def replacePostModifiedTime(filename)
     FileUtils.touch filename, :mtime => mtime
 end
 
+puts "Running modifiedDate hook..."
 # Search for modified posts
 Dir.glob("#{__dir__}/../_posts/**/*.md") do |file|
     replacePostModifiedTime(file)
