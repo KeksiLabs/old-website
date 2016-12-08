@@ -5,7 +5,7 @@ layout: null
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>{{ site.theme_settings.title | xml_escape }}</title>
-    <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml"/>
+    <atom:link href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml"/>
     <link>{{ site.url }}{{ site.baseurl }}/</link>
     <description>{{ site.theme_settings.description | xml_escape }}</description>
     <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
@@ -14,13 +14,10 @@ layout: null
         <title>{{ post.title | xml_escape }}</title>
         <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
         <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
-        {% if post.last_modified_at %}
-        <atom:modified>{{ post.last_modified_at | date_to_rfc822}}</atom:modified>
-        {% endif %}
         <description>{{ post.content | xml_escape }}</description>
         <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
         {% if post.author %}
-        <author>{{ site.authors[post.author].email }}</author>
+        <author>{{ site.authors[post.author].email }} ({{ site.authors[post.author].name }})</author>
         {% endif %}
       </item>
     {% endfor %}
