@@ -46,7 +46,7 @@ def replacePostModifiedTime(filename)
     FileUtils.touch filename, :mtime => mtime
 end
 
-puts "Running modifiedDate hook..."
+puts "Setting last_modified_at for all posts and pages..."
 # Search for modified posts
 Dir.glob("#{__dir__}/../{*,*/*}.md") do |file|
     next if File.basename(file.downcase) == "readme.md"
