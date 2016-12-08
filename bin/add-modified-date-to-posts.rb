@@ -6,6 +6,7 @@ require 'fileutils'
 YAML_FRONT_MATTER_REGEXP = /\A---(.|\n)*?---/m
 
 def replacePostModifiedTime(filename)
+    puts "Setting modifiedDate to #{File.basename(filename)}"
     file = File.open(filename, "a+")
 
     content = file.read
@@ -14,7 +15,7 @@ def replacePostModifiedTime(filename)
 
     mtime = file.mtime
     if yml['modifiedDate'] === mtime
-        puts "#{filename} is not modified since last time #{mtime}..."
+        puts "Skipping: File is not modified since last time..."
         return
     end
     yml['modifiedDate'] = mtime
@@ -41,7 +42,6 @@ end
 
 # Search for modified posts
 Dir.glob("#{__dir__}/../_posts/**/*.md") do |file|
-    puts "Setting modifiedDate to #{File.basename(file)}"
     replacePostModifiedTime(file)
 end
 
