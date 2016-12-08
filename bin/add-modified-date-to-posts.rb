@@ -6,7 +6,6 @@ require 'fileutils'
 YAML_FRONT_MATTER_REGEXP = /\A---(.|\n)*?---/m
 
 def replacePostModifiedTime(filename)
-    puts "Setting modifiedDate to #{File.basename(filename)}"
     file = File.open(filename, "a+")
 
     content = file.read
@@ -14,10 +13,12 @@ def replacePostModifiedTime(filename)
     yml = YAML.load(content)
 
     mtime = file.mtime
-    if yml['modifiedDate'] === mtime
-        puts "Skipping: File is not modified since last time..."
-        return
-    end
+
+    # Stop if file is not modified
+    return if yml['modifiedDate'] === mtime
+
+    puts "Setting modifiedDate to #{File.basename(filename)}"
+
     yml['modifiedDate'] = mtime
 
     frontmatter = "---\n"
