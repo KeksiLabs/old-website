@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<article {% if page.feature-img %}class="feature-image"{% endif %}>
+<article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" itemprop="blogPost" {% if page.feature-img %}class="feature-image"{% endif %}>
   <header style="background-image: url('{{ site.baseurl }}/{{ page.feature-img }}')">
     <h1 class="title">{{ page.title }}</h1>
     <div class="post-meta">
@@ -17,9 +17,13 @@ layout: default
         {% for tag in page.tags %}{% if forloop.first %}<strong>{{tag}}</strong>{% elsif forloop.last %} and <strong>{{tag}}</strong>{% else %}, <strong>{{tag}}</strong>{% endif %}{% endfor %}.
         </p>
         {% endif %}
+        {% if page.category %}
+        <span itemprop="articleSection" class="hidden">{{ page.category}}</span>
+        {% endif%}
+        <span itemprop="wordCount" class="hidden">{{ page.content | number_of_words }}</span>
     </div>
   </header>
-  <section class="post-content">{{ content }}</section>
+  <section itemprop="articleBody" class="post-content">{{ content }}</section>
 </article>
 
 <!-- Post navigation -->
