@@ -1,6 +1,5 @@
 // Header text feature
 
-
 .call-out {
   @extend %padding-regular;
   display: inline-block;
@@ -27,6 +26,14 @@
 }
 // Post listing
 .posts {
+  .post-meta {
+    .post-category {
+        padding-left: 10px;
+    }
+    .fa {
+        padding-right: 3px;
+    }
+  }
   .post-teaser {
     @extend %padding-regular;
     width: 100%;

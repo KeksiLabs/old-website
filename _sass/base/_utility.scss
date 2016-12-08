@@ -6,7 +6,10 @@
   }
 }
 %padding-regular {
-  padding: $padding-small $padding-large;
+    padding: $padding-small $padding-large;
+  @media (max-width: 500px) {
+    padding: $padding-small * 1.5 $padding-large / 2 !important;
+  }
   @media (max-width: 1000px) {
     padding: $padding-small * 1.5 $padding-large / 1.6;
   }
@@ -32,4 +35,14 @@ a.button:hover {
 // States
 .disabled {
   opacity: 0.7;
+}
+
+.visually-hidden-mobile {
+    @media (max-width: 500px) {
+        position: absolute;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        height: 1px; width: 1px;
+        margin: -1px; padding: 0; border: 0;
+    }
 }

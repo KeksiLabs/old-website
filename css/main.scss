@@ -1,5 +1,12 @@
 ---
 ---
+
+// Overrides font-awesome path
+$fa-font-path: "../node_modules/font-awesome/fonts";
+
+// FontAwesome
+@import '../node_modules/font-awesome/scss/font-awesome';
+
 // External
 @import 'external/reset';
 @import 'external/syntax';
@@ -9,6 +16,16 @@
 @import 'base/variables';
 @import 'base/global';
 @import 'base/utility';
+@import 'base/images';
+
+// Post
+@import 'post/main';
+
+// Category
+@import 'category/main';
+
+// Authors
+@import 'base/authors';
 
 // Posts
 @import 'layouts/posts';
@@ -17,3 +34,4 @@
 // Partials
 @import 'includes/header';
 @import 'includes/footer';
+

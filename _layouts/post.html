@@ -4,10 +4,20 @@ layout: default
 <article {% if page.feature-img %}class="feature-image"{% endif %}>
   <header style="background-image: url('{{ site.baseurl }}/{{ page.feature-img }}')">
     <h1 class="title">{{ page.title }}</h1>
-    <p class="meta">
-    {{ page.date | date: "%B %-d, %Y" }}
-    {% if page.author and site.authors[page.author].name %} - {{ site.authors[page.author].name }}{% endif %}
-    </p>
+    <div class="post-meta">
+        <span class="visually-hidden-mobile">Written by</span> <span class="entry-author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><a href="{{ site.authors[page.author].uri }}" title="Posts by {{ site.authors[page.author].name }}" rel="author" class="url fn n" itemprop="url">
+        {% if site.authors[page.author].gravatar %}
+        <img itemprop="image" class="img-circle meta-author-image" width="40" height="40" src="https://s.gravatar.com/avatar/{{ site.authors[page.author].gravatar }}">
+        {% endif %}
+        <span itemprop="name">{{ site.authors[page.author].name }}</span></a></span>
+        on
+        <time class="entry-published updated" datetime="{{ page.date | date: "%Y-%m-%dT%H:%M:%S%z" }}" itemprop="datePublished" title="{{ page.date | date: "%A, %B %e, %Y" }}">{{ page.date | date: "%B %-d, %Y" }}</time><span class="visually-hidden-mobile">.</span>
+        {% if page.tags %}
+        <p class="description"> <span class="visually-hidden-mobile">This article is</span> about
+        {% for tag in page.tags %}{% if forloop.first %}<strong>{{tag}}</strong>{% elsif forloop.last %} and <strong>{{tag}}</strong>{% else %}, <strong>{{tag}}</strong>{% endif %}{% endfor %}.
+        </p>
+        {% endif %}
+    </div>
   </header>
   <section class="post-content">{{ content }}</section>
 </article>

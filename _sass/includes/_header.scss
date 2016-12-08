@@ -6,7 +6,7 @@
   float: left;
   width: 100%;
 
-  font-family: 1.2em;
+  font-size: 1.1em;
 
   a {
     color: $header-link-color;
@@ -18,7 +18,7 @@
     float: left;
     margin-top: -3px;
     border-radius: 0.2em;
-    margin-right: 1em;
+    margin-right: 0.5em;
 
     -webkit-transition: -webkit-transform 0.8s ease-in-out;
             transition:         transform 0.8s ease-in-out;

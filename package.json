@@ -1,0 +1,28 @@
+{
+  "name": "keksi.io",
+  "version": "1.0.0",
+  "description": "Website for https://keksi.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onnimonni/keksi.io.git"
+  },
+  "keywords": [
+    "keksi",
+    "web",
+    "engineering",
+    "blog"
+  ],
+  "author": "Onni Hakala",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/onnimonni/keksi.io/issues"
+  },
+  "homepage": "https://github.com/onnimonni/keksi.io#readme",
+  "dependencies": {
+    "font-awesome": "^4.7.0"
+  }
+}

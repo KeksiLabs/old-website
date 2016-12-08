@@ -18,6 +18,10 @@ authors:
     twitter: koodimonni
     github: onnimonni
     uri: https://keybase.io/onnimonni
+    gravatar: ffbe81bf9fa424901ddc06be226c98a4
+
+sections:
+  tutorials: 'Tutorials'
 
 settings:
 # THEME-SPECIFIC CONFIGURATION
@@ -55,7 +59,7 @@ theme_settings:
   stack_exchange:  # Full URL
   steam:
   tumblr:
-  twitter: "koodimonni"
+  twitter: "keksiengineer"
   wordpress:
   youtube:
 
@@ -85,7 +89,7 @@ paginate: 5
 paginate_path: "blog/page:num"
 
 # Exclude non-site files
-exclude: ['bin', 'LICENSE', 'CNAME', 'README.md']
+exclude: ['bin', 'LICENSE', 'CNAME', 'README.md', 'node_modules/font-awesome/css', 'node_modules/font-awesome/scss', 'node_modules/font-awesome/less']
 
 # SYNTAX HIGHLIGHTING
 markdown: kramdown

@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "How to manage remote server users with ansible"
-categories: tutorials
-tags: ansible
+category: tutorials
+tags: ansible devops servers
 author: onnimonni
 ---
 
@@ -34,9 +34,9 @@ Here's quick example for how to do this with ansible. More advanced users should
 
 ### Step 1. Create a project
 ```console
-mkdir user-management-ansible
-cd user-management-ansible
-git init .
+$ mkdir user-management-ansible
+$ cd user-management-ansible
+$ git init .
 ```
 
 ### Step 2: Copy example ansible into your project

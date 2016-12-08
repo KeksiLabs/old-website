@@ -1,0 +1,14 @@
+section.category-archive {
+    @extend %padding-regular;
+    .category-header {
+        text-align: center;
+        padding-top: 5em;
+    }
+
+    .post-teaser {
+        padding: 0;
+        border-bottom: none;
+    }
+
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}

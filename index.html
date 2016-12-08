@@ -19,9 +19,15 @@ layout: default
             {{ post.title }}
           </a>
         </h1>
-        <p class="meta">
-          {{ post.date | date: "%B %-d, %Y" }}
-        </p>
+        <div class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time class="entry-published updated" datetime="{{ post.date | date: "%Y-%m-%dT%H:%M:%S%z" }}" itemprop="datePublished" title="{{ post.date | date: "%A, %B %e, %Y" }}">{{ post.date | date: "%B %-d, %Y" }}</time>.
+            {% if post.categories %}
+            <wbr>
+            <a class="post-category" href="{{ post.category | prepend: '/category/' | prepend: site.baseurl }}"><i class="fa fa-folder" aria-hidden="true"></i>{{ site.sections[post.category] }}</a>
+            <wbr>
+            {% endif %}
+        </div>
       </header>
       <div class="excerpt">
         {{ post.excerpt }}
