@@ -10,7 +10,9 @@ Lately I have been working more and more with servers. Today I wanted to switch 
 
 I spend some time talking about this in the [Finnish WordPress related slack channel](https://fi.wordpress.org/chat/) and @tsipilai had mentioned [flexboxfroggy.com](flexboxfroggy.com) as a nice and fun way to learn css flexing.
 
-After I felt like a pro I started to think what I could do with this and stumbled into the menu of this site. I quite liked the desktop version but the mobile menu felt stupid.
+After I felt like a pro I started to think what I could do with this and stumbled into the menu of this site.
+
+I liked the desktop version but the mobile menu felt odd.
 
 I have seen multiple sites using completely separate menus for mobile and desktop. Usually they are poorly structured too which means that those sites can't be used by screenreaders and are not really accessible. I wish those can now be avoided with flexbox.
 
