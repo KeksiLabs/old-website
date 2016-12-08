@@ -1,14 +1,12 @@
-# Type Theme
+# Keksi.io
 
-![Default Type Theme blog](https://cloud.githubusercontent.com/assets/816965/5142407/19742e48-71d6-11e4-8d9d-fdfe010784f0.png)
+Source code for [https://keksi.io](https://keksi.io)
 
-A free and open-source [Jekyll](http://jekyllrb.com) theme. Great for blogs and easy to customize.
-
-## Get Started
-
-[Demo](https://rohanchandra.github.io/type-theme/)
-
-[Using Type](https://rohanchandra.github.io/project/type/)
+## Setup
+```
+# Add automatic githook which adds modifiedDate into posts
+ln -sf ../../bin/add-modified-date-to-posts.rb .git/hooks/pre-commit
+```
 
 ## License
 The MIT License (MIT)

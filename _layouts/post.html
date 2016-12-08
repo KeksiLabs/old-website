@@ -12,21 +12,29 @@ layout: default
         <span itemprop="name">{{ site.authors[page.author].name }}</span></a></span>
         on
         <time class="entry-published updated" datetime="{{ page.date | date: "%Y-%m-%dT%H:%M:%S%z" }}" itemprop="datePublished" title="{{ page.date | date: "%A, %B %e, %Y" }}">{{ page.date | date: "%B %-d, %Y" }}</time><span class="visually-hidden-mobile">.</span>
+
         {% if page.tags %}
         <p class="description"> <span class="visually-hidden-mobile">This article is</span> about
-        {% for tag in page.tags %}{% if forloop.first %}<strong>{{tag}}</strong>{% elsif forloop.last %} and <strong>{{tag}}</strong>{% else %}, <strong>{{tag}}</strong>{% endif %}{% endfor %}.
+            {% for tag in page.tags %}{% if forloop.first %}<strong>{{tag}}</strong>{% elsif forloop.last %} and <strong>{{tag}}</strong>{% else %}, <strong>{{tag}}</strong>{% endif %}{% endfor %}.
         </p>
         {% endif %}
         {% if page.category %}
-        <span itemprop="articleSection" class="hidden">{{ page.category}}</span>
+        <span itemprop="articleSection" class="hidden">{{ page.category }}</span>
         {% endif%}
         <span itemprop="wordCount" class="hidden">{{ page.content | number_of_words }}</span>
     </div>
   </header>
   <section itemprop="articleBody" class="post-content">{{ content }}</section>
+  {% if page.modifiedDate%}
+  <small class="footnotes">
+    <i class="fa fa-info-circle"></i>
+    This post was last updated on:
+    <time class="entry-modified modified" datetime="{{ page.modifiedDate | date: "%Y-%m-%dT%H:%M:%S%z" }}" itemprop="dateModified" title="{{ page.modifiedDate | date: "%A, %B %e, %Y" }}">{{ page.modifiedDate | date: "%B %-d, %Y" }}</time>
+  </small>
+  {% endif %}
 </article>
 
-<!-- Post navigation -->
+{% comment %} <!-- Post navigation --> {% endcomment %}
 {% if site.theme_settings.post_navigation %}
 <div id="post-nav">
     {% if page.previous.url %}
@@ -48,14 +56,14 @@ layout: default
 </div>
 {% endif %}
 
-<!-- Disqus -->
+{% comment %} <!-- Disqus --> {% endcomment %}
 {% if site.theme_settings.disqus_shortname %}
 <div class="comments">
   {% include disqus.html %}
 </div>
 {% endif %}
 
-<!-- Muut -->
+{% comment %} <!-- Muut --> {% endcomment %}
 {% if site.theme_settings.muut_community_name %}
 <div class="comments">
   {% include muut.html %}
