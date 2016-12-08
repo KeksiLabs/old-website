@@ -27,7 +27,15 @@ layout: null
       <email>{{ site.authors[post.author].email }}</email>
     </author>
     <rights>Copyright (c) {{ post.date | date: "%Y" }}, {{ site.theme_settings.legal_name }}</rights>
-    <content type="html">{{ post.content | xml_escape }}</content>
+    <content type="html">
+        {% if post.feature-img %}
+        <![CDATA[
+    <a href="{{ post.url | prepend: site.baseurl | prepend: site.url }}">
+      <img {% if post.feature_img_alt_txt %}alt="{{ post.feature_img_alt_txt }}"{% endif %} src="{{ site.baseurl }}/{{ page.feature-img }}" />
+    </a>
+  ]]>{% endif %}
+    {{ post.content | xml_escape }}
+    </content>
   </entry>
   {% endfor %}
 
