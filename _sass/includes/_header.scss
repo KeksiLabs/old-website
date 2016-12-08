@@ -35,26 +35,55 @@
     line-height: 1.5;
   }
 
-  .site-nav {
+  display: flex;
+  @media (min-width:  600px) {
+    justify-content: space-between;
+    .branding {
+      flex-grow: 3;
+    }
+  }
+  @media (max-width:  599px) {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .branding, .external-links, .site-nav {
+      padding-top: $padding-small / 2;
+      padding-bottom: $padding-small / 2;
+    }
+    .branding {
+      order: 1;
+      min-width: 150px;
+    }
+    .external-links {
+      order: 2;
+      min-width: 200px;
+    }
+    .site-nav {
+      min-width: 300px;
+      order: 3;
+      ul li {
+        float: left;
+      }
+    }
+    .site-nav, .external-links, ul, li {
+      margin-left: 0.4em;
+    }
+  }
+
+  .site-nav, .external-links {
     ul {
       margin: 0;
       padding: 0;
       list-style: none;
       line-height: 1.5;
-      float: right;
       text-align: right;
     }
     li {
       display: inline;
-      float: left;
       margin-right: 0.4em;
     }
     @media (max-width: 1100px) {
       ul {
         display: inline-block;
-        float: left;
-        padding-top: $padding-small;
-        text-align: left;
         width: 100%;
       }
     }
