@@ -12,6 +12,8 @@ I spend some time talking about this in the [Finnish WordPress related slack cha
 
 After I felt like a pro I started to think what I could do with this and stumbled into the menu of this site. I quite liked the desktop version but the mobile menu felt stupid.
 
+I have seen multiple sites using completely separate menus for mobile and desktop. Usually they are poorly structured too which means that those sites can't be used by screenreaders and are not really accessible. I wish those can now be avoided with flexbox.
+
 This was the starting point:
 
 **Keksi.io desktop menu:**
