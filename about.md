@@ -38,10 +38,6 @@ Keksi is based in Tampere, Finland but we can travel anywhere.
 
 Contact [hello@keksi.io](hello@keksi.io) to say Hi.
 
-## Credits
-
-<div>Cookie Logo made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> is from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> and licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY.</a></div>
-
 ### Served with speed using:
 <script data-cfbadgetype="a" data-cfbadgeskin="dkgray" type="text/javascript">
 //<![CDATA[
