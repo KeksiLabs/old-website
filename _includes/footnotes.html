@@ -10,8 +10,8 @@
     {% endif%}
     contains
     <span itemprop="wordCount" >{{ page.content | markdownify | strip_html | number_of_words }}</span> words.
-    <span itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organisation">
-        <img src="{{ 'logo.png' | prepend: site.baseurl | prepend: site.url }}">
+    <span class="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organisation">
+        <img src="{{ '/logo.png' | prepend: site.baseurl | prepend: site.url }}">
     </span>
-    <a itemprop="mainEntityOfPage" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}" ></a>
+    <a class="hidden" itemprop="mainEntityOfPage" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}" ></a>
 </small>
