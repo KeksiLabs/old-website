@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<section class="tag-archive">
+    <div class="tag-header">
+        <h1>List of all categories:</h1>
+    </div>
+    <ul class="tags">
+    {% for tag in site.categories %}
+      {% assign t = tag | first %}
+      {% assign posts = tag | last %}
+      {% assign t_slug = t | downcase | replace:" ","-" %}
+      <li><a href="{{ page.url }}/{{ t_slug }}" title="There's {{ posts | size }} posts in category {{ t }}">{{ t_slug }}</a></li>
+    {% endfor %}
+    </ul>
+</section>

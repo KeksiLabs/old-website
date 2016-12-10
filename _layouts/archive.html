@@ -1,0 +1,38 @@
+---
+layout: default
+---
+<section class="category-archive">
+
+    <div class="category-header">
+        <h1>
+            {% if page.type == 'tag' %}
+            Posts with {{ page.type }} #
+            {% else %}
+            Posts in {{ page.type }}
+            {% endif %}
+            <a class="archive-name" href="{{ page.url }}">{{ page.title }}</a>
+        </h1>
+    </div>
+
+    <div class="posts">
+    {% for post in page.posts %}
+    <div class="post-teaser">
+      <header>
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
+            {{ post.title }}
+          </a>
+        </h2>
+        {% include post_meta.html %}
+      </header>
+      <div class="excerpt">
+        {{ post.excerpt }}
+        <a class="button" href="{{ post.url | prepend: site.baseurl }}">
+          {{ site.theme_settings.str_continue_reading }}
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</section>

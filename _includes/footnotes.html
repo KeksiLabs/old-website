@@ -1,6 +1,6 @@
 <small class="footnotes">
-    {% if page.last_modified_at %}
     <i class="fa fa-info-circle"></i>
+    {% if page.last_modified_at %}
     This post was last updated on:
     <time class="entry-modified modified" datetime="{{ page.last_modified_at | date: "%Y-%m-%dT%H:%M:%S%z" }}" itemprop="dateModified" title="{{ page.last_modified_at | date: "%A, %B %e, %Y" }}">{{ page.last_modified_at | date: "%B %-d, %Y" }}</time>.
     {% endif %}

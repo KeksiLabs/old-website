@@ -1,0 +1,17 @@
+<div class="post-about">
+    <span class="visually-hidden-mobile">Written by</span> <span class="entry-author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><a href="{{ site.authors[page.author].uri }}" title="Posts by {{ site.authors[page.author].name }}" rel="author" class="url fn n" itemprop="url">
+    {% if site.authors[page.author].gravatar %}
+    <img itemprop="image" class="img-circle meta-author-image" width="40" height="40" src="https://s.gravatar.com/avatar/{{ site.authors[page.author].gravatar }}">
+    {% endif %}
+    <span itemprop="name">{{ site.authors[page.author].name }}</span></a></span>
+    on
+    <time class="entry-published updated" datetime="{{ page.date | date: "%Y-%m-%dT%H:%M:%S%z" }}" itemprop="datePublished" title="{{ page.date | date: "%A, %B %e, %Y" }}">{{ page.date | date: "%B %-d, %Y" }}</time><span class="visually-hidden-mobile">.</span>
+
+    {% if page.tags %}
+    <p class="description"> <span class="visually-hidden-mobile">This article is</span> about
+        <span itemprop="keywords">
+        {% for tag in page.tags %}{% if forloop.first %}<strong>{{tag}}</strong>{% elsif forloop.last %} and <strong>{{tag}}</strong>{% else %}, <strong>{{tag}}</strong>{% endif %}{% endfor %}.
+        </span>
+    </p>
+    {% endif %}
+</div>

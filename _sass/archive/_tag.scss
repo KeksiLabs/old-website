@@ -1,0 +1,26 @@
+section.tag-archive {
+    @extend %padding-regular;
+    .tag-header {
+        text-align: center;
+        padding-top: 5em;
+        h1 a {
+            text-color: $link-color;
+        }
+    }
+
+    .post-teaser {
+        padding: 0;
+        border-bottom: none;
+    }
+
+    ul.tags {
+        list-style: none;
+        li {
+            font-size: 2em;
+            padding-left: 0.3em;
+            display: inline-block;
+        }
+    }
+
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}

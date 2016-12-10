@@ -4,7 +4,7 @@ title: Using css flexbox for accessible mobile menus
 category: web
 tags: flexbox css html accessibility
 author: onnimonni
-last_modified_at: 2016-12-08 18:16:42 +0200
+last_modified_at: 2016-12-10 16:27:57 +0200
 ---
 
 Lately I have been working more and more with servers. Today I wanted to switch more into the frontend side of things and decided to give flexbox few hours.

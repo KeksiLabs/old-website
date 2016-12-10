@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<section class="tag-archive">
+
+    <div class="tag-header">
+        <h1>Posts about <a href="{{ page.url}}">#{{ page.tag }}</a></h1>
+    </div>
+
+
+    <div class="posts">
+    {% for post in page.posts %}
+    <div class="post-teaser">
+      <header>
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
+            {{ post.title }}
+          </a>
+        </h2>
+        {% include post_meta.html %}
+      </header>
+      <div class="excerpt">
+        {{ post.excerpt }}
+        <a class="button" href="{{ post.url | prepend: site.baseurl }}">
+          {{ site.theme_settings.str_continue_reading }}
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</section>

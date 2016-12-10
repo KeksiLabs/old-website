@@ -3,7 +3,12 @@
     &:hover {
         color: $highlight-color;
     }
+
 }
+
 .post-meta {
     padding-top: 10px;
+    .tag:before {
+        content: "#";
+    }
 }

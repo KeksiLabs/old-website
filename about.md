@@ -1,9 +1,10 @@
 ---
 layout: page
 title: About
+show_in_menu: true
 permalink: /about/
 feature-img: img/sample_feature_img_2.png
-last_modified_at: 2016-12-01 01:05:48 +0200
+last_modified_at: 2016-12-10 15:12:17 +0200
 ---
 
 Keksi Labs was founded to help businesses of all sizes to enhance their workflow and systems through modern practises.

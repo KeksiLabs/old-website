@@ -9,19 +9,7 @@
             <h1 class="site-title">{{ site.theme_settings.title }}</h1>
 		</a>
 	</div>
-	<nav class="site-nav">
-		<ul>
-			{% for page in site.pages %}
-			{% if page.title and page.hide != true %}
-			<li>
-				<a class="page-link" href="{{ page.url | prepend: site.baseurl }}">
-					{{ page.title }}
-				</a>
-			</li>
-			{% endif %}
-			{% endfor %}
-		</ul>
-	</nav>
+	{% include navigation.html %}
     <nav class="external-links">
         <ul>
             {% include icons.html %}
