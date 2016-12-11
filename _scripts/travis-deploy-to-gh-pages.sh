@@ -20,5 +20,7 @@ git add -A
 git commit -am "Builded gh-pages in Travis from master #$TRAVIS_COMMIT"
 
 # Push current master branch as gh-pages into github
-git push github master:gh-pages --force
+# Don't output anything so that $GITHUB_ACCESS_TOKEN won't go into the logs
+echo "Pushing to https://github.com/$TRAVIS_REPO_SLUG quietly"
+git push github master:gh-pages --force --quiet
 
