@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 # Open the build folder
 cd _site
@@ -8,11 +7,11 @@ cd _site
 git init .
 
 # Config git
-git config user.name "Travis CI"
-git config user.email "travis@keksi.io"
+git config user.name "Keksi Labs Bot"
+git config user.email "Bot@keksi.io"
 
 # Add github as remote
-git remote add github "https://$GITHB_ACCESS_TOKEN@github.com/$TRAVIS_REPO_SLUG.git"
+git remote add github "https://$GITHUB_ACCESS_TOKEN@github.com/$TRAVIS_REPO_SLUG.git"
 
 # and add all files
 git add -A
