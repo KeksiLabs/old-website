@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-- 2.3
+- 2.3.3
 
 # route your build to the container-based infrastructure for a faster build
 sudo: false
