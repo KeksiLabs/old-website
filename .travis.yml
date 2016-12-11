@@ -5,6 +5,10 @@ rvm:
 # route your build to the container-based infrastructure for a faster build
 sudo: false
 
+# Make is not present by default
+install:
+  - apt-get install make
+
 script:
   - Make build
   - Make test
