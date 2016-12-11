@@ -37,7 +37,7 @@ This tech is so new but we have managed to try these out with great success:
 
 Keksi is based in Tampere, Finland but we can travel anywhere.
 
-Contact [hello@keksi.io](hello@keksi.io) to say Hi.
+Contact [hello@keksi.io](mailto:hello@keksi.io) to say Hi.
 
 ### Served with speed using:
 <script data-cfbadgetype="a" data-cfbadgeskin="dkgray" type="text/javascript">
