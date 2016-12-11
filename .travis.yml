@@ -7,9 +7,6 @@ sudo: false
 env:
   JEKYLL_HOSTNAME: keksi.io
 
-before_install:
-  - echo "127.0.0.1 $JEKYLL_HOSTNAME" >> /etc/hosts
-
 install:
   - bundle install
   - npm install
