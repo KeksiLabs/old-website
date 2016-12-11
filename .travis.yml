@@ -5,9 +5,8 @@ rvm:
 # route your build to the container-based infrastructure for a faster build
 sudo: false
 
-addons:
-  hosts:
-    - keksi.io
+env:
+  SITE_DOMAIN: keksi.io
 
 install:
   - bundle install
@@ -19,7 +18,7 @@ script:
   - bundle exec jekyll build --config _config.yml,_config/production.yml
 
   # Run tests
-  - bundle exec htmlproofer ./_site --check-opengraph --check-favicon
+  - bundle exec htmlproofer ./_site --check-opengraph --check-favicon --internal-domains $SITE_DOMAIN
 
 # branch whitelist, only for GitHub Pages
 branches:
