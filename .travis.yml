@@ -31,6 +31,6 @@ env:
 deploy:
   skip_cleanup: true
   provider: script
-  script: _scripts/travis-deploy-gh-pages.sh
+  script: _scripts/travis-deploy-to-gh-pages.sh
   on:
     branch: master
