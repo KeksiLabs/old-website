@@ -5,7 +5,7 @@
 # This is list of typical commands needed in development
 install:
 	bundle install
-	npm install
+	npm install --verbose
 	cp -r node_modules/font-awesome/fonts fonts/font-awesome
 
 # This is for deveplopment so that we can see the created changes ASAP

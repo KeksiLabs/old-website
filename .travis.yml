@@ -4,7 +4,7 @@ rvm:
 sudo: false
 install:
 - bundle install
-- npm install
+- npm install --verbose
 - cp -r node_modules/font-awesome/fonts fonts/font-awesome
 script:
 - bundle exec jekyll build --config _config.yml,_config/production.yml
