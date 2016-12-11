@@ -1,7 +1,7 @@
 <div class="post-about">
     <span class="visually-hidden-mobile">Written by</span> <span class="entry-author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><a href="{{ site.authors[page.author].uri }}" title="Posts by {{ site.authors[page.author].name }}" rel="author" class="url fn n" itemprop="url">
     {% if site.authors[page.author].gravatar %}
-    <img itemprop="image" class="img-circle meta-author-image" width="40" height="40" src="https://s.gravatar.com/avatar/{{ site.authors[page.author].gravatar }}">
+    <img itemprop="image" class="img-circle meta-author-image" width="40" height="40" alt="{{ site.authors[page.author].name }}" src="https://s.gravatar.com/avatar/{{ site.authors[page.author].gravatar }}">
     {% endif %}
     <span itemprop="name">{{ site.authors[page.author].name }}</span></a></span>
     on

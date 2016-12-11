@@ -11,7 +11,7 @@
     contains
     <span itemprop="wordCount" >{{ page.content | markdownify | strip_html | number_of_words }}</span> words.
     <span class="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organisation">
-        <img src="{{ '/logo.png' | prepend: site.baseurl | prepend: site.url }}">
+        <img alt="{{ site.theme_settings.legal_name }}" src="{{ '/logo.png' | prepend: site.baseurl | prepend: site.url }}">
     </span>
     <a class="hidden" itemprop="mainEntityOfPage" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}" ></a>
 </small>

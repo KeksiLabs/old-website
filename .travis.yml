@@ -4,8 +4,10 @@ rvm:
 
 # route your build to the container-based infrastructure for a faster build
 sudo: false
-env:
-  JEKYLL_HOSTNAME: keksi.io
+
+addons:
+  hosts:
+    - keksi.io
 
 install:
   - bundle install
@@ -14,7 +16,6 @@ install:
 
 script:
   # Create _site
-  - bundle exec bin/add-modified-date-to-posts.rb
   - bundle exec jekyll build --config _config.yml,_config/production.yml
 
   # Run tests

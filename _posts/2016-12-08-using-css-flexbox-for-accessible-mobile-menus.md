@@ -9,7 +9,7 @@ last_modified_at: 2016-12-10 16:27:57 +0200
 
 Lately I have been working more and more with servers. Today I wanted to switch more into the frontend side of things and decided to give flexbox few hours.
 
-I spend some time talking about this in the [Finnish WordPress related slack channel](https://fi.wordpress.org/chat/) and @tsipilai had mentioned [flexboxfroggy.com](flexboxfroggy.com) as a nice and fun way to learn css flexing.
+I spend some time talking about this in the [Finnish WordPress related slack channel](https://fi.wordpress.org/chat/) and @tsipilai had mentioned [flexboxfroggy.com](http://flexboxfroggy.com) as a nice and fun way to learn css flexing.
 
 After I felt like a pro I started to think what I could do with this and stumbled into the menu of this site.
 
