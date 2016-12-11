@@ -1,0 +1,1 @@
+{% if page.description %}{{ page.description }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% elsif site.theme_settings.description %}{{ site.theme_settings.description }}{% endif %}

@@ -1,7 +1,7 @@
 <head>
 	<meta charset="utf-8" lang="en">
     <title>{% if page.title %}{{ page.title }} |{% endif %} {{ site.theme_settings.title }}</title>
-	<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.theme_settings.description }}{% endif %}">
+	<meta name="description" content="{% include content/description %}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- og meta fields -->
@@ -10,7 +10,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
     <meta property="og:image" content="{{ '/img/keksi-io-logo-with-name.png' | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
-    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.theme_settings.description }}{% endif %}" />
+    <meta property="og:description" content="{% include content/description %}" />
 
 
 	<link rel="stylesheet" href="{{ '/css/main.css' | prepend: site.baseurl }}">
