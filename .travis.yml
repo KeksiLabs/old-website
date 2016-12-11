@@ -1,33 +1,24 @@
 language: ruby
 rvm:
 - 2.3.3
-
-# route your build to the container-based infrastructure for a faster build
 sudo: false
-
 install:
-  - bundle install
-  - npm install
-  - cp -r node_modules/font-awesome/fonts fonts/font-awesome
-
+- bundle install
+- npm install
+- cp -r node_modules/font-awesome/fonts fonts/font-awesome
 script:
-  # Create _site
-  - bundle exec jekyll build --config _config.yml,_config/production.yml
-
-  # Run tests
-  - bundle exec htmlproofer ./_site --check-opengraph --check-favicon --internal-domains $SITE_DOMAIN
-
+- bundle exec jekyll build --config _config.yml,_config/production.yml
+- bundle exec htmlproofer ./_site --check-opengraph --check-favicon --internal-domains
+  $SITE_DOMAIN
 cache:
   bundler: true
   directories:
-    - $TRAVIS_BUILD_DIR/node_modules
-
+  - "$TRAVIS_BUILD_DIR/node_modules"
 env:
   global:
-    NOKOGIRI_USE_SYSTEM_LIBRARIES: true # speeds up installation of html-proofer
-    SITE_DOMAIN: keksi.io
-
-# Deploy to gh-pages
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES: true
+  - SITE_DOMAIN: keksi.io
+  - secure: XflRViUrbTv0gfeC0a5pzYZdFeiThAZjQnc41EChNAcZfq0IkZu6x5MhtmzHijHLylrT+QDAL8h5TwtAMzUs+sXz5xGJXjKntP3zypifnyp9jRawqoWkbCqAGtO6AgT3M6w/7bF9EYvjcTWzHkTQNb4bIlYtr7bKOskZMSPdCZTj/zF7tdnDrthl+bYAcNB5mn+YeZdKZdIudXOwbEpL1y3Eh//6vonu4QOGLkOpkYgjyG8abA7dimcQ39F8SbpwbgEzOEfvE6X1Wksx7Dv8w4VaCU6tvBcKB1UimZZC1V6z2teVp8KbYAs8G8akG/dbA13N0V6yakRR6eNM/PEOEFhJLPMN6W/ayaGLnd7E+dw1eNWWlucV6UnKC4eDpuoG9hxTfcCO0y7AL6Tun9+G5H8uGGMWTgFSgPFCdwqjfFhWP6Ak7XxoYReNDfu1SwMOlokL/qiEhcwMtc/usKGqH0zZkIZKRaXpO7Dr3C2QeoA/YUBN9d5qn23+N40WcmquhhbvpYCVsVJOpr3RrgywjG57tAtOVtJfKI0kMOYEETPpige8/S04MP0Zxl8F2s827CMHFIFWbp8FbxjnGdUEF2YQLLL7rUhIj0VTmgBvZANuLZY1SVME4UQUnGwMqwcDqnzea2nWotRrue2rVGfkoHxIlaQKGcuTLhYO5Xsnz10=
 deploy:
   skip_cleanup: true
   provider: script
