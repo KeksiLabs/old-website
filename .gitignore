@@ -9,3 +9,6 @@ _site
 
 # Don't include npm packages in git
 node_modules
+
+# Don't include fontawesome in git
+fonts/font-awesome
