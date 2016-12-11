@@ -19,6 +19,8 @@ env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES: true
   - SITE_DOMAIN: keksi.io
+  - GIT_COMMIT_EMAIL: bot@keksi.io
+  - GIT_COMMIT_USER: Keksi Labs Bot
   - secure: rsmW9ORbZAjdbFzztqJj9PTteYHGXdr8S69llewLCYdAkF3/129NBx4QHCWWDSmXh2LeXlfpdHH/u+uKws3+pA2XXzEjX1r8H9IwUcCl6CppMvPwZWT/BPDtGw3mmR8YivlQPkxwLEoY5KTsOuh8SAjgEk0jO5ZM3gyb3l/bVR1DWd0n0W/FRTc5zoR8ZWHKFRdoJa41tMq4CZ2udoOySuP/K6g8pvVQ+IlNpUfa3PbX/Ob9Cd8bLyRTm5hDc7tDPrDAyI87M5NNu0l1Qyj6mQCuFH3ozixrytRlLGftD6sYaCsTHef0+AdwyQaZGK2YBSx7Gikx1QWjE9vdHonU5dUNEOb1mkA8qZ++lGty3odXufGQvFM+7cI7cI6iq77C9LrIwxzSnVjihG62XzXn8Z02yqj/0+v2Of/uKU1+Q7jlzZM0fKWEfpCK+DMQh2qpRamKvpb//hxyAkqy5TXyzVEAdoT4mZ6SZnLRZtyXY2XrcpKrvYnfCkiy2huBIMdYQDSxV9YsG6/tyTaaQuWwkCQy8Cs9SLMqEhA3vbFDWh/kvrwAXf/+CSh1S40dtQFjVzDYSbFklzx6clqZNUO0CSu0qiFNzD9IQeNxcoJLyHx39I5zSOn9+XNlraP7XM8vHEX4RgwVa3xx7ib65SUzSTyDFpihhkxYJWjSkYEchBU=
 deploy:
   skip_cleanup: true

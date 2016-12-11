@@ -7,16 +7,17 @@ cd _site
 git init .
 
 # Config git
-git config user.name "Keksi Labs Bot"
-git config user.email "bot@keksi.io"
+git config user.name "$GIT_COMMIT_USER"
+git config user.email "$GIT_COMMIT_EMAIL"
 
 # Add CNAME for the site
 if [ "$SITE_DOMAIN" != "" ]; then
+    echo "Adding CNAME: $SITE_DOMAIN"
     echo $SITE_DOMAIN > CNAME
 fi
 
 # Add github as remote
-git remote add github "https://$GITHUB_ACCESS_TOKEN@github.com/$TRAVIS_REPO_SLUG.git" --quiet
+git remote add github "https://$GITHUB_ACCESS_TOKEN@github.com/$TRAVIS_REPO_SLUG.git"
 
 # and add all files
 git add -A
@@ -28,4 +29,3 @@ git commit -am "Builded gh-pages from master in Travis\nCommit-ID:$TRAVIS_COMMIT
 # Don't output anything so that $GITHUB_ACCESS_TOKEN won't go into the logs
 echo "Pushing to https://github.com/$TRAVIS_REPO_SLUG quietly"
 git push github master:gh-pages --force --quiet
-
