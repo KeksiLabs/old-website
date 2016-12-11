@@ -15,19 +15,14 @@ script:
   - bundle exec jekyll build --config _config.yml,_config/production.yml
 
   # Run tests
-  - bundle exec htmlproofer ./_site --check-opengraph --check-favicon --internal-domains keksi.io
-
-# branch whitelist, only for GitHub Pages
-branches:
-  only:
-  - master
+  - bundle exec htmlproofer ./_site --check-opengraph --check-favicon --internal-domains $SITE_DOMAIN
 
 cache:
   bundler: true
   directories:
     - $TRAVIS_BUILD_DIR/node_modules
 
-
 env:
   global:
-  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
+    NOKOGIRI_USE_SYSTEM_LIBRARIES: true # speeds up installation of html-proofer
+    SITE_DOMAIN: keksi.io
