@@ -26,3 +26,11 @@ env:
   global:
     NOKOGIRI_USE_SYSTEM_LIBRARIES: true # speeds up installation of html-proofer
     SITE_DOMAIN: keksi.io
+
+# Deploy to gh-pages
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: _scripts/travis-deploy-gh-pages.sh
+  on:
+    branch: master
