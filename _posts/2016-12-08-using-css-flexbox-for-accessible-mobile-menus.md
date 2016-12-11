@@ -4,7 +4,7 @@ title: Using css flexbox for accessible mobile menus
 category: web
 tags: flexbox css html accessibility
 author: onnimonni
-last_modified_at: 2016-12-10 16:27:57 +0200
+last_modified_at: 2016-12-11 16:28:03 +0200
 ---
 
 Lately I have been working more and more with servers. Today I wanted to switch more into the frontend side of things and decided to give flexbox few hours.
@@ -33,7 +33,7 @@ Here you can see the related structure:
 <header class="site-header">
     <div class="branding">
         <a href="/">
-            <img class="avatar" src="/img/keksi-labs-logo.png" alt="Cookie Logo">
+            <img class="avatar" src="/logo.png" alt="Cookie Logo">
         </a>
         <h1 class="site-title">
             <a href="/">Keksi.io</a>

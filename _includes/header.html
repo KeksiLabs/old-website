@@ -4,7 +4,7 @@
             {% if site.theme_settings.gravatar %}
                 <img class="avatar" src="https://secure.gravatar.com/avatar/{{ site.theme_settings.gravatar }}?s=100" alt=""/>
             {% elsif site.theme_settings.avatar %}
-                <img class="avatar" src="{{ site.baseurl }}/img/{{ site.theme_settings.avatar }}" alt="{{ site.theme_settings.avatar_alt_text}}"/>
+                <img class="avatar" src="{{ site.baseurl }}/{{ site.theme_settings.avatar }}" alt="{{ site.theme_settings.avatar_alt_text }}"/>
             {% endif %}
             <h1 class="site-title">{{ site.theme_settings.title }}</h1>
 		</a>
