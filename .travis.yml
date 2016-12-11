@@ -12,6 +12,7 @@ script:
   $SITE_DOMAIN
 cache:
   bundler: true
+  npm: true
   directories:
   - "$TRAVIS_BUILD_DIR/node_modules"
 env:
