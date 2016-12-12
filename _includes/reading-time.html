@@ -1,0 +1,14 @@
+{% comment %}
+<!-- Average human can read 250-300 words per minute,
+We settle for 200 because these blog posts are quite technical -->
+{% endcomment %}
+{% capture word_count %}
+{{ post.content | number_of_words }}
+{% endcapture %}
+{% capture time_to_read_minutes %}
+    {{ word_count | divided_by: 200 }}
+{% endcapture %}
+<meta itemprop="timeRequired" content="P{{ time_to_read_minutes }}" />
+<span class="reading-time" title="This post contains {{ word_count | strip_newlines | replace:' ','' }} words. We have estimated that people can read techical posts at 200 words per minute.">
+    Reading time:  ~ {{ time_to_read_minutes }} min.
+</span>

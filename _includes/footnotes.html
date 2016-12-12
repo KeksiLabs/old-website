@@ -6,12 +6,18 @@
     {% endif %}
     It
     {% if page.category %}
-    is published in <span itemprop="articleSection">{{ page.category }}</span> category and it
+    is published in <span itemprop="articleSection">{{ page.category }}</span> category.
     {% endif%}
-    contains
-    <span itemprop="wordCount" >{{ page.content | markdownify | strip_html | number_of_words }}</span> words.
+    It contains
+    <span itemprop="wordCount" >{{ page.content | markdownify | strip_html | number_of_words }}</span> words
     <span class="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organisation">
         <img alt="{{ site.theme_settings.legal_name }}" src="{{ '/logo.png' | prepend: site.baseurl | prepend: site.url }}">
     </span>
+    and takes about
+    {% capture time_to_read_minutes %}
+        {{ page.content | number_of_words | divided_by: 200 }}
+    {% endcapture %}
+    {{ time_to_read_minutes }} minutes to read.
+    <meta itemprop="timeRequired" content="P{{ time_to_read_minutes }}" />
     <meta itemprop="mainEntityOfPage" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}" />
 </small>
