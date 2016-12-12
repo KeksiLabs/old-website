@@ -27,8 +27,10 @@
 // Post listing
 .posts {
   .post-meta {
-    .post-category {
-        padding-left: 10px;
+    list-style: none;
+    li {
+        display: inline-block;
+        padding-right: 10px;
     }
     .fa {
         padding-right: 3px;

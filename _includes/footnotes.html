@@ -13,5 +13,5 @@
     <span class="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organisation">
         <img alt="{{ site.theme_settings.legal_name }}" src="{{ '/logo.png' | prepend: site.baseurl | prepend: site.url }}">
     </span>
-    <a class="hidden" itemprop="mainEntityOfPage" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}" ></a>
+    <meta itemprop="mainEntityOfPage" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}" />
 </small>
