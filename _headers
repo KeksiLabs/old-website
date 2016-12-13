@@ -1,0 +1,10 @@
+/*
+    X-Frame-Options: DENY
+    X-XSS-Protection: 1; mode=block
+    X-Content-Type-Options: nosniff
+    Content-Language: "en-US"
+/*
+    Link: </css/main.css>; rel=preload; as=style
+    Link: </js/app.js>; rel=preload; as=script
+    Link: </logo.png>; rel=preload; as=image
+    Link: </fonts/font-awesome/fontawesome-webfont.woff2>; rel=preload; as=font
