@@ -1,7 +1,5 @@
-GIT
-  remote: https://github.com/KeksiLabs/jekyll-srcset.git
-  revision: 72cb4a11e12305647d54e82363d06742b8a0622c
-  branch: master
+PATH
+  remote: vendor/jekyll-srcset
   specs:
     jekyll-srcset (0.1.3)
       jekyll (> 2)
