@@ -1,0 +1,3 @@
+var instantclick = require('instantclick');
+
+//
