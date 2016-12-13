@@ -47,7 +47,7 @@ theme_settings:
   name: Keksi Labs
   legal_name: Keksi Labs Oy
 
-  avatar: logo.png
+  avatar: logo.svg
   avatar_alt_text: Keksi Labs Logo
   gravatar: # Email MD5 hash
   description: "Full speed ahead in Web engineering" # used by search engines
@@ -105,7 +105,7 @@ paginate: 5
 paginate_path: "blog/page:num"
 
 # Exclude non-site files
-exclude: ['bin', 'LICENSE', 'CNAME', 'README.md', 'node_modules', 'licenses', 'package.json', 'Makefile', 'Gemfile', 'Gemfile.lock']
+exclude: ['bin', 'vendor', 'LICENSE', 'CNAME', 'README.md', 'node_modules', 'licenses', 'package.json', 'Makefile', 'Gemfile', 'Gemfile.lock']
 
 # SYNTAX HIGHLIGHTING
 markdown: kramdown
@@ -137,11 +137,21 @@ sass:
   sass_dir: _sass
   style: :compressed
 
+srcset:
+  #cache: "/tmp/images"
+  optipng: true
+  # These are the maximum image sizes for 1x screen if someone tosses huge images into the content
+  # this should be enough
+  1x:
+    width: 1280
+    height: 720
+
 gems:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-mentions
   - jekyll-archives
   - jekyll-last-modified-at
+  - jekyll-srcset
   # Minify output
   - octopress-minify-html

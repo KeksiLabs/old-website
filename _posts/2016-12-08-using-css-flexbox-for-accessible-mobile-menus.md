@@ -4,7 +4,7 @@ title: Using css flexbox for accessible mobile menus
 category: web
 tags: flexbox css html accessibility
 author: onnimonni
-last_modified_at: 2016-12-11 21:10:48 +0200
+last_modified_at: 2016-12-13 21:24:41 +0200
 description: This post will show how css flexbox can help you to create customized menu for mobile without javascript or sacrificing accessibility.
 ---
 
@@ -21,10 +21,11 @@ I have seen multiple sites using completely separate menus for mobile and deskto
 This was the starting point:
 
 **Keksi.io desktop menu:**
-![Keksi.io Desktop Menu]({{ site.baseurl | prepend: site.url }}/img/content/2016/keksi-io-desktop-menu.png)
+{% picture_tag src='img/content/2016/keksi-io-desktop-menu.png' alt='Keksi.io Desktop Menu' %}
+
 
 **Keksi.io mobile menu before flexbox:**
-![Keksi.io Mobile Menu without flexbox]({{ site.baseurl | prepend: site.url }}/img/content/2016/keksi-io-mobile-menu-without-flex.png)
+{% picture_tag src='img/content/2016/keksi-io-mobile-menu-without-flex.png' alt='Keksi.io Mobile Menu without flexbox' %}
 
 ## Related html sctructure
 
@@ -120,4 +121,4 @@ I needed only handful of changes in order to create better experience with flexb
 Now the elements go just where I wanted. With only tiny amount of css and no frameworks needed.
 
 **Keksi.io mobile menu after using flexbox:**
-![Keksi.io Mobile Menu with flexbox]({{ site.baseurl | prepend: site.url }}/img/content/2016/keksi-io-mobile-menu-with-flex.png)
+{% picture_tag src='img/content/2016/keksi-io-mobile-menu-with-flex.png' alt='[Keksi.io Mobile Menu with flexbox' %}

@@ -9,5 +9,10 @@ Source code for [https://keksi.io](https://keksi.io)
 ln -sf ../../bin/add-modified-date-to-posts.rb .git/hooks/pre-commit
 ```
 
+## OSX
+```
+$ brew install optipng
+```
+
 ## License
 The MIT License (MIT)

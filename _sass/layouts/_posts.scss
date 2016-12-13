@@ -35,8 +35,13 @@ article {
 
     }
     img {
-      // Small box shadow so that readers can know where the image ends
-      box-shadow: 3px 4px 10px 0px #777;
+        // Small box shadow so that readers can know where the image ends
+        box-shadow: 3px 4px 10px 0px #777;
+
+        // This way images can keep the original max size
+        width: auto;
+        height: auto;
+        max-width: 100%;
     }
   }
 }

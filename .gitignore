@@ -10,6 +10,9 @@ _site
 # Don't include npm packages in git
 node_modules
 
+# No bundler libraries to git
+vendor
+
 # Don't include fontawesome in git
 fonts/*
 !fonts/.gitkeep

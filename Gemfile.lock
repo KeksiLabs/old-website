@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/KeksiLabs/jekyll-srcset.git
+  revision: 8215baf73602476faad64bb6aea9eae943941122
+  branch: master
+  specs:
+    jekyll-srcset (0.1.3)
+      jekyll (> 2)
+      mini_magick
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -70,6 +79,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     mercenary (0.3.6)
+    mini_magick (4.6.0)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_css (0.1.0)
@@ -115,6 +125,7 @@ DEPENDENCIES
   jekyll-mentions
   jekyll-paginate
   jekyll-sitemap
+  jekyll-srcset!
   octopress-minify-html
   rouge
 
