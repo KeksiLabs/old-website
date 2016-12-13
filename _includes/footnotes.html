@@ -18,6 +18,6 @@
         {{ page.content | number_of_words | divided_by: 200 }}
     {% endcapture %}
     {{ time_to_read_minutes }} minutes to read.
-    <meta itemprop="timeRequired" content="P{{ time_to_read_minutes }}" />
+    <meta itemprop="timeRequired" content="P{{ time_to_read_minutes | strip_newlines | replace:' ','' }}" />
     <meta itemprop="mainEntityOfPage" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}" />
 </small>

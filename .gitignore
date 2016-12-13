@@ -11,4 +11,10 @@ _site
 node_modules
 
 # Don't include fontawesome in git
-fonts/font-awesome
+fonts/*
+!fonts/.gitkeep
+
+# This is just the dist folder for webpack
+js/app.js
+js/analytics.js
+!js/.gitkeep

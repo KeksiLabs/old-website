@@ -6,7 +6,12 @@
 install:
 	bundle install
 	npm install --verbose
-	cp -r node_modules/font-awesome/fonts fonts/font-awesome
+
+	cp -r node_modules/font-awesome/fonts/* fonts/
+	cp -r node_modules/open-sans-fontface/fonts fonts/open-sans
+
+	# Build webpack
+	./node_modules/webpack/bin/webpack.js
 
 # This is for deveplopment so that we can see the created changes ASAP
 serve: install
