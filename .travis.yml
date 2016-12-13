@@ -17,6 +17,7 @@ cache:
   npm: true
   directories:
   - "$TRAVIS_BUILD_DIR/node_modules"
+  - "/home/travis/.rvm/gems/"
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES: true

@@ -1,1 +1,10 @@
 env: production
+
+srcset:
+  absolute-urls: true
+  optipng: true
+  # These are the maximum image sizes for 1x screen if someone tosses huge images into the content
+  # this should be enough
+  1x:
+    width: 1280
+    height: 720
