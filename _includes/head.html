@@ -6,6 +6,14 @@
 
     {% include opengraph/meta.html %}
 
+    <!-- Inline fonts -->
+    <style type="text/css">
+    {% capture include_to_scssify %}
+      {% include css/critical.scss %}
+    {% endcapture %}
+    {{ include_to_scssify | scssify }}
+    </style>
+
 	<link rel="stylesheet" href="{{ '/css/main.css' | prepend: site.baseurl }}">
 
 	<link rel="shortcut icon" href="{{ '/favicon.ico' | prepend: site.baseurl }}" type="image/x-icon">
@@ -13,10 +21,6 @@
 	<link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
 	<link rel="alternate" type="application/atom+xml" title="{{ site.theme_settings.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}" />
-
-	{% if site.theme_settings.google_fonts %}
-	<link href="//fonts.googleapis.com/css?family={{ site.theme_settings.google_fonts }}" rel="stylesheet" type="text/css">
-	{% endif %}
 
 	{% if site.theme_settings.katex %}
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
