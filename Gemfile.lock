@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/KeksiLabs/jekyll-srcset.git
-  revision: 8215baf73602476faad64bb6aea9eae943941122
+  revision: 09782940f1385dec74d5fd7407965a48c402ad45
   branch: master
   specs:
     jekyll-srcset (0.1.3)
