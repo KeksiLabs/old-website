@@ -14,6 +14,14 @@
     {{ include_to_scssify | scssify }}
     </style>
 
+    <!--
+        Preload assets
+        - This is supported only in browsers which also support latest font type woff2
+    -->
+    <link rel="preload" href="/fonts/open-sans/Bold/OpenSans-Bold.woff2?v=1.1.0" as="font" type="font/woff2">
+    <link rel="preload" href="/fonts/open-sans/Regular/OpenSans-Regular.woff2?v=1.1.0" as="font" type="font/woff2">
+    <link rel="preload" href="/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2">
+
 	<link rel="stylesheet" href="{{ '/css/main.css' | prepend: site.baseurl }}">
 
 	<link rel="shortcut icon" href="{{ '/favicon.ico' | prepend: site.baseurl }}" type="image/x-icon">
