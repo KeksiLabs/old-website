@@ -56,7 +56,7 @@ script:
   - cat _site/assets/*
 
   # Minify all included .css files
-  - find _site/* -type f -name "*.css" | while read filename; do ./node_modules/clean-css/bin/cleancss --skip-rebase $filename -o /tmp/minified.css && cp /tmp/minified.css $filename;  done
+  - find _site/* -type f -name "*.css" | while read filename; do ./node_modules/clean-css/bin/cleancss --s0 --skip-rebase $filename -o /tmp/minified.css && cp /tmp/minified.css $filename;  done
 
   # Minify all included .js files
   - find _site/* -type f -name "*.js" | while read filename; do ./node_modules/uglify-js/bin/uglifyjs $filename -o /tmp/minified.js && cp /tmp/minified.js $filename;  done
