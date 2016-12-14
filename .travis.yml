@@ -54,6 +54,9 @@ install:
 script:
   - bundle exec jekyll build --config _config.yml,_config/production.yml
 
+  # Debug amp pages
+  - find _site/amp/* -type f -name "*.html" -exec cat {} \;
+
   # Minify all included .css files
   - find _site/* -type f -name "*.css" | while read filename; do ./node_modules/clean-css/bin/cleancss --s0 --skip-rebase $filename -o /tmp/minified.css && cp /tmp/minified.css $filename;  done
 
