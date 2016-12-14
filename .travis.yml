@@ -74,7 +74,7 @@ env:
   global:
   - IMAGEMAGICK_VERSION: '7.0.3-10'
   - LIBWEBP_VERSION: '0.5.1'
-  - NOKOGIRI_USE_SYSTEM_LIBRARIES: true
+  #- NOKOGIRI_USE_SYSTEM_LIBRARIES: true
   - SITE_DOMAIN: keksi.io
   - GIT_COMMIT_EMAIL: bot@keksi.io
   - GIT_COMMIT_USER: Keksi Labs Bot
