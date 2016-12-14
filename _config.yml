@@ -105,7 +105,7 @@ paginate: 5
 paginate_path: "blog/page:num"
 
 # Exclude non-site files
-exclude: ['bin', 'vendor', 'LICENSE', 'CNAME', 'README.md', 'node_modules', 'licenses', 'package.json', 'Makefile', 'Gemfile', 'Gemfile.lock']
+exclude: ['webpack.config.js', 'bin', 'vendor', 'LICENSE', 'CNAME', 'README.md', 'node_modules', 'licenses', 'package.json', 'Makefile', 'Gemfile', 'Gemfile.lock']
 
 # SYNTAX HIGHLIGHTING
 markdown: kramdown

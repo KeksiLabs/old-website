@@ -30,13 +30,13 @@
 @import 'includes/footer';
 
 // Overrides font-awesome path
-$fa-font-path: "../../fonts";
+$fa-font-path: "../fonts";
 
 // FontAwesome
 @import '../../node_modules/font-awesome/scss/font-awesome';
 
 // Open Sans
-$OpenSansPath: "../../fonts/open-sans";
+$OpenSansPath: "../fonts/open-sans";
 
 @import "../../node_modules/open-sans-fontface/sass/variables";
 @import "../../node_modules/open-sans-fontface/sass/mixins";
