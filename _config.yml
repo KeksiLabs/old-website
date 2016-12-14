@@ -156,3 +156,7 @@ gems:
   # Minify output
   - octopress-minify-html
   - jekyll/assets
+
+# Always use digest in urls
+assets:
+  digest: true

@@ -51,7 +51,7 @@ install:
   - cp -r node_modules/open-sans-fontface/fonts fonts/open-sans
   - ./node_modules/webpack/bin/webpack.js
 script:
-  - JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_config/production.yml
+  - bundle exec jekyll build --config _config.yml,_config/production.yml
 
   - cat _site/assets/main.css
 
@@ -67,8 +67,6 @@ cache:
   npm: true
   directories:
   - "$TRAVIS_BUILD_DIR/node_modules"
-  - "$TRAVIS_BUILD_DIR/_site"
-  - "$TRAVIS_BUILD_DIR/.asset-cache"
   - "$HOME/opt"
 env:
   global:
