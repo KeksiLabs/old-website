@@ -53,7 +53,7 @@ install:
 script:
   - bundle exec jekyll build --config _config.yml,_config/production.yml
 
-  - cat _site/assets/main.css
+  - cat _site/assets/*
 
   # Minify all included .css files
   - find _site/* -type f -name "*.css" | while read filename; do ./node_modules/clean-css/bin/cleancss $filename -o /tmp/minified.css && cp /tmp/minified.css $filename;  done
