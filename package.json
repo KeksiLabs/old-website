@@ -23,9 +23,11 @@
   },
   "homepage": "https://github.com/KeksiLabs/keksi.io#readme",
   "dependencies": {
+    "clean-css": "^3.4.22",
     "font-awesome": "^4.7.0",
     "instantclick": "^3.1.0",
     "open-sans-fontface": "^1.4.0",
+    "uglify-js": "^2.7.5",
     "webpack": "^1.14.0"
   }
 }
