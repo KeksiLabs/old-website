@@ -51,7 +51,7 @@ install:
   - cp -r node_modules/open-sans-fontface/fonts fonts/open-sans
   - ./node_modules/webpack/bin/webpack.js
 script:
-  - bundle exec jekyll build --config _config.yml,_config/production.yml
+  - JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_config/production.yml
   - bundle exec htmlproofer ./_site --check-opengraph --check-favicon --internal-domains $SITE_DOMAIN
 cache:
   bundler: true
