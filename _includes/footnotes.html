@@ -21,7 +21,11 @@
     <span>
         It was published by
         <span itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization">
-            <link itemprop="logo" href="{{ site.data.organization.logo }}" />
+            <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                <link itemprop="url" href="{{ site.data.organization.logo.url }}" />
+                <meta itemprop="width" content="{{ site.data.organization.logo.width }}">
+                <meta itemprop="height" content="{{ site.data.organization.logo.height }}">
+            </span>
             <meta itemprop="email" content="{{ site.data.organization.email }}">
             <span itemprop="name">{{ site.data.organization.legal_name }}</span>.
         </span>
