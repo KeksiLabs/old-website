@@ -14,35 +14,18 @@ addons:
 
 # Install newer libwebp and imagemagick
 before_install:
-  - export CORES=$(nproc)
-  - echo "Using $CORES cores for building libwebp and imagemagick..."
+  # Update PATH so that travis can find newer imagemagick
+  - export PATH=$HOME/opt/bin:$PATH
 
-  # Webp
-  - cd /tmp
-  - curl -O https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-$LIBWEBP_VERSION.tar.gz
-  - tar xvzf libwebp-$LIBWEBP_VERSION.tar.gz
-  - cd libwebp-*
-  - ./configure --prefix=$HOME/opt
-  - make -j$CORES
-  - make install -j$CORES
-
-  # Imagemagick
-  - cd /tmp
-  - curl -O https://www.imagemagick.org/download/ImageMagick-$IMAGEMAGICK_VERSION.tar.gz
-  - tar xvzf ImageMagick-$IMAGEMAGICK_VERSION.tar.gz
-  - cd ImageMagick-*
-  - export LDFLAGS="-L/usr/local/lib -L$HOME/opt/lib"
-  - ./configure --prefix=$HOME/opt
-  - make -j$CORES
-  - make install -j$CORES
+  # Checks if Imagemagick is already sufficient version
+  # If it isn't this installs and compiles new libwepb and imagemagick version
+  - convert -version | grep $IMAGEMAGICK_VERSION || export CORES=$(nproc) && echo "Using $CORES cores..." && cd /tmp && curl -O https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-$LIBWEBP_VERSION.tar.gz && tar xvzf libwebp-$LIBWEBP_VERSION.tar.gz && cd libwebp-* && ./configure --prefix=$HOME/opt && make -j$CORES && make install -j$CORES && cd /tmp && curl -O https://www.imagemagick.org/download/ImageMagick-$IMAGEMAGICK_VERSION.tar.gz && tar xvzf ImageMagick-$IMAGEMAGICK_VERSION.tar.gz && cd ImageMagick-* && export LDFLAGS="-L/usr/local/lib -L$HOME/opt/lib" && ./configure --prefix=$HOME/opt && make -j$CORES && make install -j$CORES
 
   # Update PATHS for programs
   - export LD_FLAGS=-L$HOME/opt/lib
   - export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib:$HOME/opt/lib
   - export CPATH=$CPATH:$HOME/opt/include
-  - export PATH=$HOME/opt/bin:$PATH
 
-  - convert -version | grep $IMAGEMAGICK_VERSION
   # Return to original directory
   - cd $TRAVIS_BUILD_DIR
 
@@ -61,7 +44,7 @@ cache:
   directories:
   - "$TRAVIS_BUILD_DIR/node_modules"
   - "$TRAVIS_BUILD_DIR/_site"
-  - "/home/travis/.rvm/gems/"
+  - "$HOME/opt"
 env:
   global:
   - IMAGEMAGICK_VERSION: '7.0.3-10'
