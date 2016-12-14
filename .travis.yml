@@ -8,6 +8,7 @@ addons:
       - libjpeg-dev
       - libpng-dev
       - libgif-dev
+      - optipng
       #- libtiff-dev webp can't convert tiff images without this
       # Disallowing packages: libtiff-dev
       # If you require these packages, please review the package approval process at: https://github.com/travis-ci/apt-package-whitelist#package-approval-process
@@ -52,8 +53,6 @@ install:
   - ./node_modules/webpack/bin/webpack.js
 script:
   - bundle exec jekyll build --config _config.yml,_config/production.yml
-
-  - cat _site/assets/*
 
   # Minify all included .css files
   - find _site/* -type f -name "*.css" | while read filename; do ./node_modules/clean-css/bin/cleancss --s0 --skip-rebase $filename -o /tmp/minified.css && cp /tmp/minified.css $filename;  done
