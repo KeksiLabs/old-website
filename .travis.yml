@@ -18,12 +18,10 @@ before_install:
   - export PATH=$HOME/opt/bin:$PATH
 
   # Checks if Imagemagick is already sufficient version
+  # If not installs it from the sources
   - convert -version | grep $IMAGEMAGICK_VERSION || {
-    # Compile packages with all available cores
     export CORES=$(nproc) &&
-    echo "Using $CORES cores..."&&
-
-    # Download and comile libwebp
+    echo "Using $CORES cores for compiling..." &&
     cd /tmp &&
     curl -O https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-$LIBWEBP_VERSION.tar.gz &&
     tar xvzf libwebp-$LIBWEBP_VERSION.tar.gz &&
@@ -31,8 +29,6 @@ before_install:
     ./configure --prefix=$HOME/opt &&
     make -j$CORES &&
     make install -j$CORES &&
-
-    # Download and compile imagemagick
     cd /tmp &&
     curl -O https://www.imagemagick.org/download/ImageMagick-$IMAGEMAGICK_VERSION.tar.gz &&
     tar xvzf ImageMagick-$IMAGEMAGICK_VERSION.tar.gz &&
@@ -40,11 +36,7 @@ before_install:
     ./configure --prefix=$HOME/opt &&
     make -j$CORES &&
     make install -j$CORES &&
-
-    # Make sure that imagemagick works just fine
     $HOME/opt/bin/magick -version | grep $IMAGEMAGICK_VERSION &&
-
-    # Return to original directory
     cd $TRAVIS_BUILD_DIR; }
 
   # Update library paths for programs
@@ -67,7 +59,6 @@ cache:
   directories:
   - "$TRAVIS_BUILD_DIR/node_modules"
   - "$TRAVIS_BUILD_DIR/_site"
-  # jekyll assets
   - "$TRAVIS_BUILD_DIR/.asset-cache"
   - "$HOME/opt"
 env:
