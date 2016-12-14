@@ -29,3 +29,8 @@ git commit -am "Builded gh-pages from master in Travis\nCommit-ID:$TRAVIS_COMMIT
 # Don't output anything so that $GITHUB_ACCESS_TOKEN won't go into the logs
 echo "Pushing to https://github.com/$TRAVIS_REPO_SLUG quietly"
 git push github master:gh-pages --force --quiet
+
+# Runs Rakefile
+echo "Notifying search-engines"
+cd ..
+rake notify
