@@ -5,6 +5,11 @@ article,
   float: left;
   width: 100%;
 }
+
+.amp .post-about {
+    padding-bottom: 1em;
+}
+
 article {
   .post-meta {
     padding-top: 1em;
@@ -32,7 +37,6 @@ article {
             font-weight: bold;
             content: "In short: ";
         }
-
     }
     img {
         // Small box shadow so that readers can know where the image ends

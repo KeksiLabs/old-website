@@ -14,5 +14,9 @@ group :jekyll_plugins do
     gem 'jekyll-assets'
 end
 
+# For AMP pages
+gem 'fastimage'
+gem 'nokogiri'
+
 # For testing the produced html
 gem "html-proofer"

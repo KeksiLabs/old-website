@@ -1,0 +1,17 @@
+.site-header {
+    .avatar {
+        height: 2em;
+        width: 2em;
+        float: left;
+        margin-top: -3px;
+        border-radius: 0.2em;
+        margin-right: 0.5em;
+
+        -webkit-transition: -webkit-transform 0.8s ease-in-out;
+                transition:         transform 0.8s ease-in-out;
+        &:hover {
+          -webkit-transform: rotate(360deg);
+                  transform: rotate(360deg);
+        }
+    }
+}

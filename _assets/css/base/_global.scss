@@ -98,8 +98,12 @@ samp {
 // slightly smaller code for mobile
 @media (max-width: 500px) {
     pre.highlight {
-        font-size: 0.8em;
+        font-size: 0.7em;
         padding: 10px;
+
+        // more space for the code in mobile
+        margin-left: -2em;
+        margin-right: -2em;
     }
 }
 dt {

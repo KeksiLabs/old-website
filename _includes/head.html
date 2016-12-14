@@ -6,13 +6,11 @@
 
     {% include opengraph/meta.html %}
 
-    <!--
-        Preload assets
-        - This is supported only in browsers which also support latest font type woff2
-    -->
-    <link rel="preload" href="/fonts/open-sans/Bold/OpenSans-Bold.woff2?v=1.1.0" as="font" type="font/woff2">
-    <link rel="preload" href="/fonts/open-sans/Regular/OpenSans-Regular.woff2?v=1.1.0" as="font" type="font/woff2">
-    <link rel="preload" href="/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2">
+    {% if page.path contains '_posts' %}
+      {% unless page.skip_amp %}
+        <link rel="amphtml" href="{{ page.id | prepend: site.ampdir | prepend: site.baseurl | prepend: site.url }}">
+      {% endunless %}
+    {% endif %}
 
     {% css main %}
 

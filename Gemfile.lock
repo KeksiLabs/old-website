@@ -134,6 +134,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  fastimage
   html-proofer
   jekyll
   jekyll-archives
@@ -143,6 +144,7 @@ DEPENDENCIES
   jekyll-paginate
   jekyll-sitemap
   jekyll-srcset!
+  nokogiri
   octopress-minify-html
   rouge
 

@@ -1,7 +1,3 @@
-{% if site.theme_settings.katex %}
-<script src="{{ "/js/katex_init.js" | prepend: site.baseurl }}"></script>
-{% endif %}
-
 <footer class="site-footer container">
 
   <div class="row">
@@ -29,9 +25,19 @@
   </div>
   <div class="notice">
     <small>&copy; Keksi Labs Oy</small>,
-    <small>Disclaimer: We’re using cookies, because cookies are the best! Have one here: {% picture_tag class="avatar" src=site.theme_settings.avatar width="22" alt=site.theme_settings.avatar_alt_text %}</small>
+    <small>Disclaimer: We’re using cookies, because cookies are the best! Have one here:
+
+    {% if page.layout != 'amp' %}
+    {% picture_tag class="avatar" src=site.theme_settings.avatar width="22" alt=site.theme_settings.avatar_alt_text %}
+    {% else %}
+    <amp-img class="avatar" src="{{ site.baseurl }}/{{site.theme_settings.avatar}}" width="22" height="22" alt="{{site.theme_settings.avatar_alt_text}}" layout="fixed" %}
+    {% endif %}
+
+    </small>
   </div>
 </footer>
 
-<!-- Add scripts here-->
-{% js app %}
+{% if page.layout != 'amp' %}
+    <!-- Add scripts here if this is not amp page-->
+    {% js app %}
+{% endif %}

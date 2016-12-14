@@ -1,33 +1,8 @@
-// External
-@import 'external/reset';
-@import 'external/syntax';
-@import 'external/grid';
+// Import critical rules, these are also used for amp pages
+@import 'critical';
 
-// Base
-@import 'base/variables';
-@import 'base/global';
-@import 'base/utility';
-@import 'base/images';
-
-// Post
-@import 'post/main';
-
-// Category
-@import 'archive/category';
-
-// Tag archive
-@import 'archive/tag';
-
-// Authors
-@import 'base/authors';
-
-// Posts
-@import 'layouts/posts';
-@import 'layouts/index';
-
-// Partials
-@import 'includes/header';
-@import 'includes/footer';
+// These are not included in critical
+@import 'extra/animations';
 
 // Overrides font-awesome path
 $fa-font-path: "../fonts";

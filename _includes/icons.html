@@ -1,4 +1,4 @@
-{% if site.theme_settings.rss %}
+{% if site.theme_settings.rss and page.layout != 'amp' %}
 <li>
 	<a href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" title="{{ site.theme_settings.str_rss_follow }}">
 		<i class="fa fa-fw fa-rss"></i>

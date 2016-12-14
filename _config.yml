@@ -160,3 +160,5 @@ gems:
 # Always use digest in urls
 assets:
   digest: true
+
+ampdir: /amp
