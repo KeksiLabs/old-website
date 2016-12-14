@@ -1,18 +1,16 @@
 <small class="footnotes">
     <i class="fa fa-info-circle"></i>
+    <strong>Info:</strong>
     {% if page.last_modified_at %}
     This post was last updated on:
     <time class="entry-modified modified" datetime="{{ page.last_modified_at | date: "%Y-%m-%dT%H:%M:%S%z" }}" itemprop="dateModified" title="{{ page.last_modified_at | date: "%A, %B %e, %Y" }}">{{ page.last_modified_at | date: "%B %-d, %Y" }}</time>.
     {% endif %}
     It
     {% if page.category %}
-    is published in <span itemprop="articleSection">{{ page.category }}</span> category.
+    is published in <span itemprop="articleSection">{{ page.category }}</span> category,
     {% endif%}
-    It contains
+    contains
     <span itemprop="wordCount" >{{ page.content | markdownify | strip_html | number_of_words }}</span> words
-    <span class="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organisation">
-        <img alt="{{ site.theme_settings.legal_name }}" src="{{ '/logo.png' | prepend: site.baseurl | prepend: site.url }}">
-    </span>
     and takes about
     {% capture time_to_read_minutes %}
         {{ page.content | number_of_words | divided_by: 200 }}
@@ -20,4 +18,10 @@
     {{ time_to_read_minutes }} minutes to read.
     <meta itemprop="timeRequired" content="P{{ time_to_read_minutes | strip_newlines | replace:' ','' }}" />
     <meta itemprop="mainEntityOfPage" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}" />
+    <span>
+        It was published by
+        <span itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organisation">
+            <span itemprop="name">{{ site.data.organization.legal_name }}</span>.
+        </span>
+    </span>
 </small>

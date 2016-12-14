@@ -9,6 +9,7 @@ permalink: pretty
 defaults:
   category: news
   author: hello@keksi.io
+  author: onnimonni
 
 navigation:
   about:
