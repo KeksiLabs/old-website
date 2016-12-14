@@ -2,7 +2,7 @@
 layout: post
 title: Using NOKOGIRI_USE_SYSTEM_LIBRARIES in Travis CI breaks amp pages
 category: gotcha
-tags: travis, jekyll, bug
+tags: travis jekyll bug
 last_modified_at: 2016-12-15 00:11:57 +0200
 ---
 
