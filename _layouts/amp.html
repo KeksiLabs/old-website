@@ -9,6 +9,14 @@ layout: amp
     <link rel="canonical" href="{{ page.canonical_url | prepend: site.baseurl | prepend: site.url }}" />
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 
+    {% include opengraph/meta.html %}
+
+    <link rel="shortcut icon" href="{{ '/favicon.ico' | prepend: site.baseurl }}" type="image/x-icon">
+
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+
+    <link rel="alternate" type="application/atom+xml" title="{{ site.theme_settings.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}" />
+
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <style amp-custom>
