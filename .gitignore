@@ -6,6 +6,10 @@ _site
 
 # Don't include cache for scss
 .sass-cache
+.asset-cache
+
+# These are build with webpack
+_assets/js/app.js
 
 # Don't include npm packages in git
 node_modules

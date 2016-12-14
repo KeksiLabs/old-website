@@ -11,6 +11,7 @@ group :jekyll_plugins do
     gem 'octopress-minify-html'
     gem 'jekyll-srcset', :git => 'https://github.com/KeksiLabs/jekyll-srcset.git', :branch => 'master'
     #gem 'jekyll-srcset', :path => 'vendor/jekyll-srcset'
+    gem 'jekyll-assets'
 end
 
 # For testing the produced html

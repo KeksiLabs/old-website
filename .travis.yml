@@ -67,6 +67,8 @@ cache:
   directories:
   - "$TRAVIS_BUILD_DIR/node_modules"
   - "$TRAVIS_BUILD_DIR/_site"
+  # jekyll assets
+  - "$TRAVIS_BUILD_DIR/.asset-cache"
   - "$HOME/opt"
 env:
   global:

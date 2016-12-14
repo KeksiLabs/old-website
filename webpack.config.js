@@ -2,9 +2,11 @@ var webpack                 = require('webpack');
 
 // Installs instantclick.js
 module.exports = {
-  entry: "./_assets/js/app.js",
+  entry: {
+    app: "./_build/js/app.js"
+  },
   output: {
-    filename: "./js/app.js"
+    filename: "./_assets/js/[name].js"
   },
   plugins: [
         new webpack.optimize.UglifyJsPlugin({

@@ -155,3 +155,4 @@ gems:
   - jekyll-srcset
   # Minify output
   - octopress-minify-html
+  - jekyll/assets

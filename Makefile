@@ -15,13 +15,13 @@ install:
 
 # This is for deveplopment so that we can see the created changes ASAP
 serve: install
-	bundle exec jekyll serve --config _config.yml,_config/development.yml
+	JEKYLL_ENV=development bundle exec jekyll serve --config _config.yml,_config/development.yml
 
 # This creates production build which minifies everything
 build: install
 	# This sets correct modified date into all posts
 	bundle exec bin/add-modified-date-to-posts.rb
-	bundle exec jekyll build --config _config.yml,_config/production.yml
+	JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_config/production.yml
 
 # Tests created documents
 test:
