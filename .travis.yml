@@ -7,36 +7,54 @@ addons:
     packages:
       - libjpeg-dev
       - libpng-dev
-      - libtiff-dev
       - libgif-dev
-      - make
+      #- libtiff-dev webp can't convert tiff images without this
+      # Disallowing packages: libtiff-dev
+      # If you require these packages, please review the package approval process at: https://github.com/travis-ci/apt-package-whitelist#package-approval-process
+
+# Install newer libwebp and imagemagick
 before_install:
-apt-get install libjpeg-dev libpng-dev libtiff-dev libgif-dev && \
-- cd /tmp && \
-- curl -O https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-0.5.1.tar.gz && \
-- tar xvzf libwebp-0.5.1.tar.gz && \
-- cd libwebp-* && \
-- ./configure && \
-- make && \
-- make install && \
-- cd /tmp && \
-- curl -O https://www.imagemagick.org/download/ImageMagick.tar.gz && \
-- tar xvzf ImageMagick.tar.gz && \
-- cd ImageMagick-* && \
-- ./configure && \
-- make && \
-- make install && \
-- ldconfig /usr/local/lib
+  - export CORES=$(nproc)
+  - echo "Using $CORES cores for building libwebp and imagemagick..."
+
+  # Webp
+  - cd /tmp
+  - curl -O https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-$LIBWEBP_VERSION.tar.gz
+  - tar xvzf libwebp-$LIBWEBP_VERSION.tar.gz
+  - cd libwebp-*
+  - ./configure --prefix=$HOME/opt
+  - make -j$CORES
+  - make install -j$CORES
+
+  # Imagemagick
+  - cd /tmp
+  - curl -O https://www.imagemagick.org/download/ImageMagick-$IMAGEMAGICK_VERSION.tar.gz
+  - tar xvzf ImageMagick-$IMAGEMAGICK_VERSION.tar.gz
+  - cd ImageMagick-*
+  - export LDFLAGS="-L/usr/local/lib -L$HOME/opt/lib"
+  - ./configure --prefix=$HOME/opt
+  - make -j$CORES
+  - make install -j$CORES
+
+  # Update PATHS for programs
+  - export LD_FLAGS=-L$HOME/opt/lib
+  - export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib:$HOME/opt/lib
+  - export CPATH=$CPATH:$HOME/opt/include
+  - export PATH=$HOME/opt/bin:$PATH
+
+  - convert -version | grep $IMAGEMAGICK_VERSION
+  # Return to original directory
+  - cd $TRAVIS_BUILD_DIR
+
 install:
-- bundle install
-- npm install --verbose
-- cp -r node_modules/font-awesome/fonts/* fonts/
-- cp -r node_modules/open-sans-fontface/fonts fonts/open-sans
-- ./node_modules/webpack/bin/webpack.js
+  - bundle install
+  - npm install --verbose
+  - cp -r node_modules/font-awesome/fonts/* fonts/
+  - cp -r node_modules/open-sans-fontface/fonts fonts/open-sans
+  - ./node_modules/webpack/bin/webpack.js
 script:
-- bundle exec jekyll build --config _config.yml,_config/production.yml
-- bundle exec htmlproofer ./_site --check-opengraph --check-favicon --internal-domains
-  $SITE_DOMAIN
+  - bundle exec jekyll build --config _config.yml,_config/production.yml
+  - bundle exec htmlproofer ./_site --check-opengraph --check-favicon --internal-domains $SITE_DOMAIN
 cache:
   bundler: true
   npm: true
@@ -46,6 +64,8 @@ cache:
   - "/home/travis/.rvm/gems/"
 env:
   global:
+  - IMAGEMAGICK_VERSION: '7.0.3-10'
+  - LIBWEBP_VERSION: '0.5.1'
   - NOKOGIRI_USE_SYSTEM_LIBRARIES: true
   - SITE_DOMAIN: keksi.io
   - GIT_COMMIT_EMAIL: bot@keksi.io
