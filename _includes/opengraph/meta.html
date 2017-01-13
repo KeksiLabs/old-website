@@ -8,7 +8,7 @@
 <meta name="twitter:site" content="keksiengineer" />
 
 {% if site.authors[page.author].twitter %}
-<meta name="twitter:creator" content="site.authors[page.author].twitter" />
+<meta name="twitter:creator" content="{{ site.authors[page.author].twitter }}" />
 {% endif %}
 
 {% if page.layout == 'post' %}

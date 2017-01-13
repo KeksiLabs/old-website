@@ -10,12 +10,12 @@
         "@type": "ImageObject",
         "url": "{{ site.url }}{{ site.baseurl }}/{{ site.data.technology[page.technology].image.src }}",
         "caption": "{{ site.url }}{{ site.baseurl }}/{{ site.data.technology[page.technology].image.alt }}"
-    }
+    },
     {% endif %}
     {% if page.genre %}
     "genre": "{{ page.genre }}",
     {% endif %}
-    "keywords": "{{ page.tags }}",
+    "keywords": "{{ page.tags | join: ',' }}",
     "wordcount": "{{ page.content | markdownify | strip_html | number_of_words }}",
     "publisher": {
         "@type": "Organization",
@@ -33,7 +33,7 @@
     "dateCreated": "{{ page.date | date: '%Y-%m-%d' }}",
     "dateModified": "{{ page.last_modified_at | date: '%Y-%m-%d' }}",
     "description": "{% include content/description %}",
-    "articleBody": "{{ content }}",
+    "articleBody": "{{ page.content | markdownify | strip_html }}",
     "author": {
         "@type": "Person",
         "name": "{{ site.authors[page.author].name }}",
