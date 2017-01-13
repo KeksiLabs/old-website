@@ -5,7 +5,7 @@ category: web
 technology: css3
 tags: flexbox css html accessibility
 author: onnimonni
-last_modified_at: 2016-12-13 21:24:41 +0200
+last_modified_at: 2017-01-13 15:40:48 +0200
 description: This post will show how css flexbox can help you to create customized menu for mobile without javascript or sacrificing accessibility.
 ---
 

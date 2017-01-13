@@ -1,3 +1,6 @@
+<pre>
+{{ page | inspect }}
+</pre>
 <script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -10,7 +13,7 @@
     "image":  {
         "@type": "ImageObject",
         "url": "{{ site.url }}{{ site.baseurl }}/{{ site.data.technology[page.technology].image.src }}",
-        "caption": "{{ site.url }}{{ site.baseurl }}/{{ site.data.technology[page.technology].image.alt }}",
+        "caption": "{{ site.data.technology[page.technology].image.alt }}",
         "height": "{{ site.data.technology[page.technology].image.height }}",
         "width": "{{ site.data.technology[page.technology].image.width }}"
     },

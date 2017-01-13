@@ -13,7 +13,7 @@ minify_html: false
 
     <link rel="shortcut icon" href="{{ '/favicon.ico' | prepend: site.baseurl }}" type="image/x-icon">
 
-    <link rel="canonical" href="{{ page.url | replace_regex: '^/amp/','/' | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="canonical" href="{{ page.canonical_url }}">
 
     <link rel="alternate" type="application/atom+xml" title="{{ site.theme_settings.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}" />
 
@@ -40,6 +40,7 @@ minify_html: false
     {{ about | amp_images: false, 40, 40 }}
     {{ content | markdownify | amp_images }}
 </article>
+{% include microdata/json-ld.html %}
 {% capture footer %}{% include footer.html %}{% endcapture %}
 {{ footer | amp_images: false, 24, 24 }}
 

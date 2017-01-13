@@ -36,9 +36,8 @@
     </small>
   </div>
 </footer>
-
-{% include microdata/json-ld.html %}
 {% if page.layout != 'amp' %}
+    {% include microdata/json-ld.html %}
     <!-- Add scripts here if this is not amp page-->
     {% js app %}
 {% endif %}
