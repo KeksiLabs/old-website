@@ -27,6 +27,9 @@
     <meta name="twitter:card" content="summary" />
     {% if page.feature-img %}
     <meta name="twitter:image" content="{{ page.feature-img | prepend: '/' | prepend: site.baseurl | prepend: site.url }}" />
+    {% elsif site.data.technology[page.technology].image %}
+    <meta name="twitter:image" content="{{ site.data.technology[page.technology].image.src | prepend: '/' | prepend: site.baseurl | prepend: site.url }}" />
+    <meta name="twitter:image:alt" content="{{ site.data.technology[page.technology].image.alt }}" />
     {% endif %}
 {% else %}
     <meta property="og:type" content="website" />

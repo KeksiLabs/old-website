@@ -11,11 +11,7 @@
     {% endif%}
     contains
     <span itemprop="wordCount" >{{ page.content | markdownify | strip_html | number_of_words }}</span> words
-    and takes about
-    {% capture time_to_read_minutes %}
-        {{ page.content | number_of_words | divided_by: 200 }}
-    {% endcapture %}
-    {{ time_to_read_minutes }} minutes to read.
+    and takes about {% include data/time-to-read.html %} minutes to read.
     <meta itemprop="timeRequired" content="P{{ time_to_read_minutes | strip_newlines | replace:' ','' }}" />
     <meta itemprop="mainEntityOfPage" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}" />
     <span>

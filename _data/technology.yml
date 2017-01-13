@@ -1,0 +1,18 @@
+travis-ci:
+  image:
+    src: tech/TravisCI-Full-Color-45e242791b7752b745a7ae53f265acd4.png
+    width: 642
+    height: 201
+    alt: Travis CI
+ansible:
+  image:
+    src: tech/Ansible-Mark-Small-RGB-Mango.png
+    width: 300
+    height: 300
+    alt: Ansible
+css3:
+  image:
+    src: tech/preview-css3logo.png
+    width: 1024
+    height: 1024
+    alt: CSS3

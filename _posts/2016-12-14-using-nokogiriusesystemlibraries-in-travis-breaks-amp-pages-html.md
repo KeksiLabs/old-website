@@ -2,9 +2,11 @@
 layout: post
 title: Using NOKOGIRI_USE_SYSTEM_LIBRARIES in Travis CI breaks amp pages
 category: gotcha
+technology: travis-ci
+genre: Continuous Integration
 tags: travis jekyll bug
 author: onnimonni
-last_modified_at: 2016-12-15 00:11:57 +0200
+last_modified_at: 2016-12-15 00:39:29 +0200
 ---
 
 Travis might break your [amp pages](https://www.ampproject.org/) when you're using `NOKOGIRI_USE_SYSTEM_LIBRARIES: true`.

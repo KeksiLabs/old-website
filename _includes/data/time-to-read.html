@@ -1,0 +1,4 @@
+{% capture time_to_read_minutes %}
+    {{ page.content | number_of_words | divided_by: 200 }}
+{% endcapture %}
+{{ time_to_read_minutes }}

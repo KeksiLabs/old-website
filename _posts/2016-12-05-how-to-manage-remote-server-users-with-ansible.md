@@ -2,9 +2,10 @@
 layout: post
 title: How to manage remote server users with ansible
 category: tutorials
+technology: ansible
 tags: ansible devops servers
 author: onnimonni
-last_modified_at: 2016-12-10 16:27:49 +0200
+last_modified_at: 2017-01-10 11:22:02 +0200
 ---
 
 This post shows an powerful example of how to do user access management for admin/developer user accounts for medium to big sized web agencies. Managing users efficiently and securely in big company usually includes a clunky process like LDAP. Today I will show you how to use git and ansible instead.

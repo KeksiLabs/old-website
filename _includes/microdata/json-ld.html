@@ -1,0 +1,38 @@
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ page.title }}",
+    {% if page.feature-img %}
+    "image": "{{ site.url }}{{ site.baseurl }}/{{ page.feature-img }}",
+    {% endif %}
+    {% if page.genre %}
+    "genre": "{{ page.genre }}",
+    {% endif %}
+    "keywords": "{{ page.tags }}",
+    "wordcount": "{{ page.content | markdownify | strip_html | number_of_words }}",
+    "publisher": {
+        "@type": "Organization",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ site.data.organization.logo.url }}",
+            "width": "{{ site.data.organization.logo.width }}",
+            "height": "{{ site.data.organization.logo.height }}"
+        },
+        "email": "{{ site.data.organization.email }}",
+        "name": "{{ site.data.organization.legal_name }}"
+    },
+    "url": "{{ site.url }}{{ page.url }}",
+    "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+    "dateCreated": "{{ page.date | date: '%Y-%m-%d' }}",
+    "dateModified": "{{ page.last_modified_at | date: '%Y-%m-%d' }}",
+    "description": "{% include content/description %}",
+    "articleBody": "{{ content }}",
+    "author": {
+        "@type": "Person",
+        "name": "{{ site.authors[page.author].name }}",
+        "url": "{{ site.authors[page.author].uri }}",
+        "image": "https://s.gravatar.com/avatar/{{ site.authors[page.author].gravatar }}"
+    }
+}
+</script>
