@@ -37,7 +37,7 @@ before_install:
     ./configure --prefix=$HOME/opt &&
     make -j$CORES &&
     make install -j$CORES &&
-    $HOME/opt/bin/magick -version | grep $IMAGEMAGICK_VERSION &&
+    $HOME/opt/bin/convert -version | grep $IMAGEMAGICK_VERSION &&
     cd $TRAVIS_BUILD_DIR; }
 
   # Update library paths for programs
