@@ -33,7 +33,7 @@
     "dateCreated": "{{ page.date | date: '%Y-%m-%d' }}",
     "dateModified": "{{ page.last_modified_at | date: '%Y-%m-%d' }}",
     "description": "{% include content/description %}",
-    "articleBody": "{{ page.content | markdownify | strip_html }}",
+    "articleBody": "{{ page.content | strip_html | strip_newlines | jsonify }}",
     "author": {
         "@type": "Person",
         "name": "{{ site.authors[page.author].name }}",
