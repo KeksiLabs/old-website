@@ -6,7 +6,11 @@
     {% if page.feature-img %}
     "image": "{{ site.url }}{{ site.baseurl }}/{{ page.feature-img }}",
     {% elsif site.data.technology[page.technology].image %}
-    "image": "{{ site.url }}{{ site.baseurl }}/{{ site.data.technology[page.technology].image.src }}",
+    "image":  {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}{{ site.baseurl }}/{{ site.data.technology[page.technology].image.src }}",
+        "caption": "{{ site.url }}{{ site.baseurl }}/{{ site.data.technology[page.technology].image.alt }}"
+    }
     {% endif %}
     {% if page.genre %}
     "genre": "{{ page.genre }}",
