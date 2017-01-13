@@ -26,14 +26,13 @@ before_install:
     cd /tmp &&
     curl -L -O https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-$LIBWEBP_VERSION.tar.gz &&
     tar xzf libwebp-$LIBWEBP_VERSION.tar.gz &&
+    curl -L -O https://github.com/ImageMagick/ImageMagick/archive/$IMAGEMAGICK_VERSION.tar.gz &&
+    tar xzf $IMAGEMAGICK_VERSION.tar.gz &&
     cd libwebp-* &&
     ./configure --prefix=$HOME/opt &&
     make -j$CORES &&
     make install -j$CORES &&
-    cd /tmp &&
-    curl -L -O https://github.com/ImageMagick/ImageMagick/archive/$IMAGEMAGICK_VERSION.tar.gz &&
-    tar xzf ImageMagick-$IMAGEMAGICK_VERSION.tar.gz &&
-    cd ImageMagick* &&
+    cd /tmp/ImageMagick* &&
     ./configure --prefix=$HOME/opt &&
     make -j$CORES &&
     make install -j$CORES &&
