@@ -31,7 +31,7 @@ before_install:
     make -j$CORES &&
     make install -j$CORES &&
     cd /tmp &&
-    curl -O https://www.imagemagick.org/download/ImageMagick-$IMAGEMAGICK_VERSION.tar.gz &&
+    curl -O https://www.imagemagick.org/download/ImageMagick.tar.gz &&
     tar xvzf ImageMagick-$IMAGEMAGICK_VERSION.tar.gz &&
     cd ImageMagick-* &&
     ./configure --prefix=$HOME/opt &&
@@ -69,7 +69,6 @@ cache:
   - "$HOME/opt"
 env:
   global:
-  - IMAGEMAGICK_VERSION: '7.0.3-10'
   - LIBWEBP_VERSION: '0.5.1'
   #- NOKOGIRI_USE_SYSTEM_LIBRARIES: true
   - SITE_DOMAIN: keksi.io
