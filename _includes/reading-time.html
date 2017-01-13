@@ -9,6 +9,12 @@ We settle for 200 because these blog posts are quite technical -->
     {{ word_count | divided_by: 200 }}
 {% endcapture %}
 <meta itemprop="timeRequired" content="P{{ time_to_read_minutes }}" />
+
+{% if page.feature-img %}
+<meta itemprop="image" content="{{ site.url }}{{ site.baseurl }}/{{ page.feature-img }}" />
+{% elsif site.data.technology[page.technology].image %}
+<meta itemprop="image" content="{{ site.url }}{{ site.baseurl }}/{{ site.data.technology[page.technology].image }}" />
+{% endif %}
 <span class="reading-time" title="This post contains {{ word_count | strip_newlines | replace:' ','' }} words. We have estimated that people can read techical posts at 200 words per minute.">
     Reading time:  ~ {{ time_to_read_minutes }} min.
 </span>
