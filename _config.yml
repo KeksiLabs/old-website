@@ -150,7 +150,6 @@ srcset:
 gems:
   - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-mentions
   - jekyll-archives
   - jekyll-last-modified-at
   - jekyll-srcset
