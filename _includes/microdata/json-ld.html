@@ -2,6 +2,7 @@
 {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
+
     "headline": "{{ page.title }}",
     {% if page.feature-img %}
     "image": "{{ site.url }}{{ site.baseurl }}/{{ page.feature-img }}",
@@ -9,7 +10,9 @@
     "image":  {
         "@type": "ImageObject",
         "url": "{{ site.url }}{{ site.baseurl }}/{{ site.data.technology[page.technology].image.src }}",
-        "caption": "{{ site.url }}{{ site.baseurl }}/{{ site.data.technology[page.technology].image.alt }}"
+        "caption": "{{ site.url }}{{ site.baseurl }}/{{ site.data.technology[page.technology].image.alt }}",
+        "height": "{{ site.data.technology[page.technology].image.height }}",
+        "width": "{{ site.data.technology[page.technology].image.width }}"
     },
     {% endif %}
     {% if page.genre %}
@@ -29,11 +32,12 @@
         "name": "{{ site.data.organization.legal_name }}"
     },
     "url": "{{ site.url }}{{ page.url }}",
+    "mainEntityOfPage": "{{ site.url }}{{ page.url }}",
     "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
     "dateCreated": "{{ page.date | date: '%Y-%m-%d' }}",
     "dateModified": "{{ page.last_modified_at | date: '%Y-%m-%d' }}",
     "description": "{% include content/description %}",
-    "articleBody": "{{ page.content | strip_html | strip_newlines | jsonify }}",
+    "articleBody": {{ page.content | strip_html | strip_newlines | jsonify }},
     "author": {
         "@type": "Person",
         "name": "{{ site.authors[page.author].name }}",

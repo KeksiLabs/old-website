@@ -13,6 +13,11 @@
     <span itemprop="wordCount" >{{ page.content | markdownify | strip_html | number_of_words }}</span> words
     and takes about {% include data/time-to-read.html %} minutes to read.
     <meta itemprop="timeRequired" content="P{{ time_to_read_minutes | strip_newlines | replace:' ','' }}" />
+    {% if page.feature-img %}
+    <meta itemprop="image" content="{{ site.url }}{{ site.baseurl }}/{{ page.feature-img }}" />
+    {% elsif site.data.technology[page.technology].image %}
+    <meta itemprop="image" content="{{ site.url }}{{ site.baseurl }}/{{ site.data.technology[page.technology].image.src }}" />
+    {% endif %}
     <meta itemprop="mainEntityOfPage" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}" />
     <span>
         It was published by
