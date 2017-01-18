@@ -22,7 +22,7 @@ authors:
     email: onni@keksi.io
     name: Onni Hakala
     twitter: koodimonni
-    facebook: onnimonni
+    facebook: monnionni
     github: onnimonni
     keybase: onnimonni
     uri: https://keybase.io/onnimonni
@@ -32,7 +32,7 @@ sections:
   tutorials: 'Tutorials'
 
 jekyll-archives:
-  enabled: []
+  enabled: 'all'
   layout: 'archive'
   permalinks:
     year: '/:year/'
