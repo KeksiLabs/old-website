@@ -30,7 +30,7 @@
         },
         "email": "{{ site.data.organization.email }}",
         "name": "{{ site.data.organization.legal_name }}",
-        "sameas": [
+        "sameAs": [
             "https://twitter.com/{{ site.data.organization.twitter }}",
             "https://github.com/{{ site.data.organization.github }}"
         ]
@@ -48,7 +48,7 @@
         "url": "{{ site.authors[page.author].uri }}",
         "image": "https://s.gravatar.com/avatar/{{ site.authors[page.author].gravatar }}"
         {% if site.data.authors[page.author].github %}
-        "sameas": [
+        "sameAs": [
             {% if site.data.authors[page.author].twitter %}
             "https://twitter.com/{{ site.data.authors[page.author].twitter }}",
             {% endif %}
