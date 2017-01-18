@@ -31,7 +31,7 @@ sections:
   tutorials: 'Tutorials'
 
 jekyll-archives:
-  enabled: 'all'
+  enabled: []
   layout: 'archive'
   permalinks:
     year: '/:year/'
