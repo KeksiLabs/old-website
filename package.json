@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/KeksiLabs/keksi.io#readme",
   "dependencies": {
+    "amphtml-validator": "^1.0.18",
     "clean-css": "^3.4.22",
     "font-awesome": "^4.7.0",
     "instantclick": "^3.1.0",
