@@ -59,8 +59,8 @@ script:
   # Minify all included .js files
   - find _site/* -type f -name "*.js" | while read filename; do ./node_modules/uglify-js/bin/uglifyjs $filename -o /tmp/minified.js && cp /tmp/minified.js $filename;  done
 
-  # Sometimes there has been random ssl errors with consul.io so skip those checks
-  - bundle exec htmlproofer ./_site --check-opengraph --check-favicon --internal-domains $SITE_DOMAIN,www.consul.io
+  # Sometimes there has been random timeout errors on external domains so skip those checks
+  - bundle exec htmlproofer ./_site --check-opengraph --check-favicon --disable-external --internal-domains $SITE_DOMAIN
 cache:
   bundler: true
   npm: true
