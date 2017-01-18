@@ -9,6 +9,11 @@ Source code for [https://keksi.io](https://keksi.io)
 ln -sf ../../bin/add-modified-date-to-posts.rb .git/hooks/pre-commit
 ```
 
+## Develop the site
+```
+$ make serve
+```
+
 ## OSX
 ```
 $ brew install optipng
