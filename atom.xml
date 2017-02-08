@@ -1,0 +1,465 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>Keksi.io</title>
+  <subtitle type="html">Full speed ahead in Web engineering</subtitle>
+  <link href="https://keksi.io/atom.xml" rel="self" type="application/atom+xml"/>
+  <updated>2017-02-08T22:53:13+00:00</updated>
+  <id>https://keksi.io/</id>
+  <author>
+    <name>Keksi Labs</name>
+    <email>hello@keksi.io</email>
+  </author>
+
+  
+  <entry>
+    <id>https://keksi.io/tutorials/2017/02/08/socks5-proxy-with-ssh-and-chrome-in-osx</id>
+    <link type="text/html" rel="alternate" href="https://keksi.io/tutorials/2017/02/08/socks5-proxy-with-ssh-and-chrome-in-osx/"/>
+    <title>SOCKS5 proxy with ssh tunnel and chrome in OSX</title>
+    <published>2017-02-08T00:00:00+00:00</published>
+    
+    <updated>2017-02-08T21:32:45+00:00</updated>
+    
+    <author>
+      <name>Onni Hakala</name>
+      <uri>https://keybase.io/onnimonni</uri>
+      <email>onni@keksi.io</email>
+    </author>
+    <rights>Copyright (c) 2017, Keksi Labs Oy</rights>
+    <content type="html">
+        
+    &lt;p&gt;Today I learned how to debug http services with chrome in remote environment.&lt;/p&gt;
+
+&lt;p&gt;I needed to debug http2 services which were only available in remote environment.&lt;/p&gt;
+
+&lt;p&gt;Here are the commands that you need:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Open socks5 proxy to local port 1337&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# This connects to remote host using ssh into port 2222&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;ssh -D 1337 -f -C -q -N user@remote -p 2222
+
+&lt;span class=&quot;c&quot;&gt;# Symlink chrome binary to PATH&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ( This is optional )&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;ln -s /Applications/Google&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Chrome.app/Contents/MacOS/Google&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Chrome &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+	/usr/local/bin/chrome
+
+&lt;span class=&quot;c&quot;&gt;# Open chrome using the socks5 proxy in port 1337&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;chrome --proxy-server&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;socks5://127.0.0.1:1337&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+	--host-resolver-rules&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;MAP * 0.0.0.0 , EXCLUDE localhost&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;After this new chrome window opens and all requests except &lt;code class=&quot;highlighter-rouge&quot;&gt;localhost&lt;/code&gt; are resolved through the remote machine.&lt;/p&gt;
+
+&lt;p&gt;Now you can access remote services easily from your browser.&lt;/p&gt;
+
+    </content>
+  </entry>
+  
+  <entry>
+    <id>https://keksi.io/gotcha/2016/12/14/using-nokogiriusesystemlibraries-in-travis-breaks-amp-pages-html</id>
+    <link type="text/html" rel="alternate" href="https://keksi.io/gotcha/2016/12/14/using-nokogiriusesystemlibraries-in-travis-breaks-amp-pages-html/"/>
+    <title>Using NOKOGIRI_USE_SYSTEM_LIBRARIES in Travis CI breaks amp pages</title>
+    <published>2016-12-14T00:00:00+00:00</published>
+    
+    <updated>2016-12-14T22:39:29+00:00</updated>
+    
+    <author>
+      <name>Onni Hakala</name>
+      <uri>https://keybase.io/onnimonni</uri>
+      <email>onni@keksi.io</email>
+    </author>
+    <rights>Copyright (c) 2016, Keksi Labs Oy</rights>
+    <content type="html">
+        
+    &lt;p&gt;Travis might break your &lt;a href=&quot;https://www.ampproject.org/&quot;&gt;amp pages&lt;/a&gt; when you’re using &lt;code class=&quot;highlighter-rouge&quot;&gt;NOKOGIRI_USE_SYSTEM_LIBRARIES: true&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Do you know the feeling when you have a bug which is just motherf* hard son of a bitch level bug to track. You spend hours or even days figuring it out persistantly closing different options out of the bigger picture. This just happened to me as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://search.google.com/search-console/amp&quot;&gt;Google AMP validator&lt;/a&gt; just outputted multiple errors even though my local development environment was just fine:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The tag 'script' is disallowed except in specific forms.
+The mandatory tag 'amphtml engine v0.js script' is missing or incorrect. (see
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;the-context&quot;&gt;The context&lt;/h2&gt;
+&lt;p&gt;I’m building and testing this site in &lt;a href=&quot;https://travis-ci.org/KeksiLabs/keksi.io&quot;&gt;Travis CI&lt;/a&gt;. I had enabled &lt;code class=&quot;highlighter-rouge&quot;&gt;NOKOGIRI_USE_SYSTEM_LIBRARIES: true&lt;/code&gt; in my &lt;code class=&quot;highlighter-rouge&quot;&gt;.travis.yml&lt;/code&gt; because many developers have had good experience with that in order to speed up the builds.&lt;/p&gt;
+
+&lt;p&gt;Somehow the older version of nokogiri outputted the closing elements for my html head &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&lt;/code&gt; too early.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;This was what I wanted to achieve:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;noscript&amp;gt;&amp;lt;style &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;amp-boilerplate&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;-webkit-animation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;-moz-animation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;-ms-animation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;animation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/style&amp;gt;&amp;lt;/noscript&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdn.ampproject.org/v0.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;custom-element=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amp-analytics&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdn.ampproject.org/v0/amp-analytics-0.1.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;This was what happened in the build phase instead:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;noscript&amp;gt;&amp;lt;style &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;amp-boilerplate&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;-webkit-animation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;-moz-animation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;-ms-animation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;animation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/style&amp;gt;&amp;lt;/noscript&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdn.ampproject.org/v0.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;custom-element=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amp-analytics&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdn.ampproject.org/v0/amp-analytics-0.1.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;As you can see the head element ends too soon.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In the end it was super relieving after I figured this out. If you’re having random html errors try to disable notorius &lt;code class=&quot;highlighter-rouge&quot;&gt;NOKOGIRI_USE_SYSTEM_LIBRARIES&lt;/code&gt;.&lt;/p&gt;
+
+    </content>
+  </entry>
+  
+  <entry>
+    <id>https://keksi.io/web/2016/12/08/using-css-flexbox-for-accessible-mobile-menus</id>
+    <link type="text/html" rel="alternate" href="https://keksi.io/web/2016/12/08/using-css-flexbox-for-accessible-mobile-menus/"/>
+    <title>Using css flexbox for accessible mobile menus</title>
+    <published>2016-12-08T00:00:00+00:00</published>
+    
+    <updated>2017-01-13T13:40:48+00:00</updated>
+    
+    <author>
+      <name>Onni Hakala</name>
+      <uri>https://keybase.io/onnimonni</uri>
+      <email>onni@keksi.io</email>
+    </author>
+    <rights>Copyright (c) 2016, Keksi Labs Oy</rights>
+    <content type="html">
+        
+    &lt;p&gt;Lately I have been working more and more with servers. Today I wanted to switch more into the frontend side of things and decided to give flexbox few hours.&lt;/p&gt;
+
+&lt;p&gt;I spend some time talking about this in the &lt;a href=&quot;https://fi.wordpress.org/chat/&quot;&gt;Finnish WordPress related slack channel&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/tsipilai&quot;&gt;@tsipilai&lt;/a&gt; had mentioned &lt;a href=&quot;http://flexboxfroggy.com&quot;&gt;flexboxfroggy.com&lt;/a&gt; as a nice and fun way to learn css flexing.&lt;/p&gt;
+
+&lt;p&gt;After I felt like a pro I started to think what I could do with this and stumbled into the menu of this site.&lt;/p&gt;
+
+&lt;p&gt;I liked the desktop version but the mobile menu felt odd.&lt;/p&gt;
+
+&lt;p&gt;I have seen multiple sites using completely separate menus for mobile and desktop. Usually they are poorly structured too which means that those sites can’t be used by screenreaders and are not really accessible. I wish those can now be avoided with flexbox.&lt;/p&gt;
+
+&lt;p&gt;This was the starting point:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Keksi.io desktop menu:&lt;/strong&gt;&lt;/p&gt;
+&lt;picture&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;/img/content/2016/keksi-io-desktop-menu.webp&quot; /&gt;&lt;img src=&quot;/img/content/2016/keksi-io-desktop-menu-1266x224.png&quot; alt=&quot;Keksi.io Desktop Menu&quot; width=&quot;1280&quot; height=&quot;256&quot; srcset=&quot;/img/content/2016/keksi-io-desktop-menu-1266x224.png 1x&quot; /&gt;&lt;/picture&gt;
+
+&lt;p&gt;&lt;strong&gt;Keksi.io mobile menu before flexbox:&lt;/strong&gt;&lt;/p&gt;
+&lt;picture&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;/img/content/2016/keksi-io-mobile-menu-without-flex.webp&quot; /&gt;&lt;img src=&quot;/img/content/2016/keksi-io-mobile-menu-without-flex-984x304.png&quot; alt=&quot;Keksi.io Mobile Menu without flexbox&quot; width=&quot;1280&quot; height=&quot;426&quot; srcset=&quot;/img/content/2016/keksi-io-mobile-menu-without-flex-984x304.png 1x&quot; /&gt;&lt;/picture&gt;
+
+&lt;h2 id=&quot;related-html-sctructure&quot;&gt;Related html sctructure&lt;/h2&gt;
+
+&lt;p&gt;Here you can see the related structure:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;header&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;site-header&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;branding&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;avatar&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/logo.png&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;alt=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Cookie Logo&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;site-title&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Keksi.io&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;nav&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;site-nav&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;page-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/about/&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;About&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/nav&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;nav&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;external-links&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://keksi.io/feed.xml&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Follow RSS feed&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+                    &lt;span class=&quot;nt&quot;&gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fa fa-fw fa-rss&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mailto:hello@keksi.io&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Email&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+                    &lt;span class=&quot;nt&quot;&gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fa fa-fw fa-envelope&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://github.com/KeksiLabs&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Follow on GitHub&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+                    &lt;span class=&quot;nt&quot;&gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fa fa-fw fa-github&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://twitter.com/keksiengineer&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Follow on Twitter&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+                    &lt;span class=&quot;nt&quot;&gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fa fa-fw fa-twitter&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/nav&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/header&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I wanted to put &lt;code class=&quot;highlighter-rouge&quot;&gt;site-nav&lt;/code&gt; below &lt;code class=&quot;highlighter-rouge&quot;&gt;branding&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;external-links&lt;/code&gt; for just mobile menus. Few years ago I did similiar thing for one client with ugly javascript hack and that decision still haunts me in the cold and dark nights of Finland.&lt;/p&gt;
+
+&lt;p&gt;In order to reorder the menu elements with &lt;code class=&quot;highlighter-rouge&quot;&gt;flexbox&lt;/code&gt; I only needed to use &lt;code class=&quot;highlighter-rouge&quot;&gt;order&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;flex-wrap&lt;/code&gt; directives.&lt;/p&gt;
+
+&lt;p&gt;I needed only handful of changes in order to create better experience with flexbox.&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.site-header&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Use flexbox
+&lt;/span&gt;    &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Adjust the empty space between elements
+&lt;/span&gt;    &lt;span class=&quot;nl&quot;&gt;justify-content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;space-between&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;@media&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min-width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;600px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// This helps the branding to take more space than the other elements
+&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// in the desktop view
+&lt;/span&gt;        &lt;span class=&quot;nc&quot;&gt;.branding&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nl&quot;&gt;flex-grow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;@media&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;599px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Instead of keeping everything in the same row allow flexbox to split them
+&lt;/span&gt;        &lt;span class=&quot;nl&quot;&gt;flex-wrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// Change elements to custom order
+&lt;/span&gt;        &lt;span class=&quot;nc&quot;&gt;.branding&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nl&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;.external-links&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nl&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;.site-nav&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nl&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+            &lt;span class=&quot;c1&quot;&gt;// Extra: Change the direction of menu items for mobile view
+&lt;/span&gt;            &lt;span class=&quot;nt&quot;&gt;ul&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;li&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;nl&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
+
+&lt;p&gt;Now the elements go just where I wanted. With only tiny amount of css and no frameworks needed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Keksi.io mobile menu after using flexbox:&lt;/strong&gt;&lt;/p&gt;
+&lt;picture&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;/img/content/2016/keksi-io-mobile-menu-with-flex.webp&quot; /&gt;&lt;img src=&quot;/img/content/2016/keksi-io-mobile-menu-with-flex-836x330.png&quot; alt=&quot;[Keksi.io Mobile Menu with flexbox&quot; width=&quot;1280&quot; height=&quot;640&quot; srcset=&quot;/img/content/2016/keksi-io-mobile-menu-with-flex-836x330.png 1x&quot; /&gt;&lt;/picture&gt;
+
+    </content>
+  </entry>
+  
+  <entry>
+    <id>https://keksi.io/tutorials/2016/12/05/how-to-manage-remote-server-users-with-ansible</id>
+    <link type="text/html" rel="alternate" href="https://keksi.io/tutorials/2016/12/05/how-to-manage-remote-server-users-with-ansible/"/>
+    <title>How to manage remote server users with ansible</title>
+    <published>2016-12-05T00:00:00+00:00</published>
+    
+    <updated>2017-01-10T09:22:02+00:00</updated>
+    
+    <author>
+      <name>Onni Hakala</name>
+      <uri>https://keybase.io/onnimonni</uri>
+      <email>onni@keksi.io</email>
+    </author>
+    <rights>Copyright (c) 2016, Keksi Labs Oy</rights>
+    <content type="html">
+        
+    &lt;p&gt;This post shows an powerful example of how to do user access management for admin/developer user accounts for medium to big sized web agencies. Managing users efficiently and securely in big company usually includes a clunky process like LDAP. Today I will show you how to use git and ansible instead.&lt;/p&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;When companies grow and start to have tens or hundreds of servers it starts to take enormous amount of time to create users into the servers manually. Many web agencies just get tired and allow &lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt; user access for all of their administrators/developers.&lt;/p&gt;
+
+&lt;p&gt;This is a bad practise which should be always avoided because it makes auditing so much harder. What about if a person leaves the company or their laptop and private ssh keys get stolen? Then you would need to revoke the access ASAP and this will be harder if the company doesn’t keep record of all of their users and their access levels.&lt;/p&gt;
+
+&lt;p&gt;Many developers also won’t understand how dangerous it is to paste the same root user passwords in plaintext in sms, email or company chat like slack. It’s quite easy to gain access to any of those medias.&lt;/p&gt;
+
+&lt;h2 id=&quot;ansible-and-ssh-keys-to-the-rescue&quot;&gt;Ansible and ssh keys to the rescue&lt;/h2&gt;
+
+&lt;p&gt;We in Keksi Labs have helped multiple smaller companies to manage this problem with configuration management.&lt;/p&gt;
+
+&lt;p&gt;The solution is to keep record of all of the granted users in git and use ansible to deploy all of the changes.&lt;/p&gt;
+
+&lt;p&gt;This is passwordless solution for remote server access with ssh.&lt;/p&gt;
+
+&lt;p&gt;If you want to see full real world example look into our github:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/KeksiLabs/ansible-user-management-example&quot;&gt;KeksiLabs/ansible-user-management-example&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;tutorial-for-ansible-and-git&quot;&gt;Tutorial for ansible and git&lt;/h3&gt;
+
+&lt;p&gt;Here’s quick example for how to do this with ansible. More advanced users should see the provided repository mentioned earlier.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-1-create-a-project&quot;&gt;Step 1. Create a project&lt;/h3&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;mkdir&lt;/span&gt;&lt;span class=&quot;kv&quot;&gt; user-management-ansible
+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;cd&lt;/span&gt;&lt;span class=&quot;kv&quot;&gt; user-management-ansible
+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;kv&quot;&gt; init .
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;step-2-copy-example-ansible-into-your-project&quot;&gt;Step 2: Copy example ansible into your project&lt;/h3&gt;
+
+&lt;p&gt;Copy this provided &lt;code class=&quot;highlighter-rouge&quot;&gt;yml&lt;/code&gt; ansbile config into file named &lt;code class=&quot;highlighter-rouge&quot;&gt;users.yml&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let’s see what this does:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;It creates new group called &lt;code class=&quot;highlighter-rouge&quot;&gt;infra_admin&lt;/code&gt; and gives it sudo privileges.&lt;/li&gt;
+  &lt;li&gt;It checks that provided users exist in the target machines with their ssh keys&lt;/li&gt;
+  &lt;li&gt;It deletes users which should be absent&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;##&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# This ansible playbook handles and creates all provided users from&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# company_admin_list&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# For more advanced but similiar setup see: https://github.com/KeksiLabs/ansible-user-management-example&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;##&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Install all users&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;all&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;become&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;vars&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;admin_group&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;infra_admin'&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;company_admin_list&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# This is how add users to servers&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Onni&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Hakala&quot;&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;onnimonni&quot;&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;s&quot;&gt;active&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ssh-rsa&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;AAAAB3NzaC1yc2EAAAADAQABAAABgQC8gOdvYe12yaVQGMZXgn0qcd7vxMZhj1wsBTDFP/HnwdnbywbV/jt//yGex51cTkfqoP3YlkdgUfQeKJws4j7rxu04gx6uRBIlRcR+7wdcFgksFs4EFumTpZOSOwKybHVIbeIubLi76+mhB9L2JXD4f+TtkL0WJtvBDsCavGLHbru2JafS3K/6b97sU2vpmA/mDREKDpnuVxcMXsXlY0THgoxx70L7SjYsWMzRYiJc+FWzMqyi1yribhEUuUT4ch6B7DiBuPfWFQUlA2KkGbihsw+Kmyrw0e36z1MOEWAhroczt8zKjawWeYQ4qTwQRrjM8b+C2yfFgBpUqFAhAM0Lb9dh8V3xfui30zik2eW2LTQ4JtD2xNUflA+NvG2+fcB7w3ub+QNXI3zp+Joto627oB3j4Nao+s/XHOd0T8idHVrbfhoRK8UE4r6nKI8b5b7JrzaDipE1CjS2TsIixaj9a/VxYMtNE2A9JPGHsXlIPpi++GaW+rz4DZoqkArfsFE=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;onni@keksi.io&quot;&lt;/span&gt;
+          &lt;span class=&quot;s&quot;&gt;disabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ssh-rsa&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;AAAAB3NzaC1yc2EAAAADAQABAAABAQCsPoDM21LjBodcS3Kiq7ZDyNjFY4L03Yx2nSoSzdV7TKj00Zk8gh1hSSgI/xSDXiK+QEbfPuh/7+G3sfeDDNavjWUA1kdLve4D6MTI302C3HilK6wOZV67ezyAgdgf/VCHfx+no+bocw/05r1VamLrnFjDasWAQFFeFLaOnfQTArHQRl2Z8+4ZtZ1YQPhnleFQfEz546D3oWE1DS3vuXL1Qodz3gijtHhGnc3jaQM+7m/gg2vrcL6bc/vCtdunpA1fSQrBSx0kK4qdTWwc2LZDwKIT3YP5GthvgkFHsbCo2mNdBwWZfOBTYr5LBpz9YBcO7oVBWVEI00BdEPRFOYJL&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;onnimonni@Onni-MacBook-Air.local&quot;&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;shell&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/bin/bash&quot;&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;present&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# This is how you remove users&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Example&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Quitted&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Person&quot;&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;example-quitted-person&quot;&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;absent&lt;/span&gt;
+
+  &lt;span class=&quot;s&quot;&gt;tasks&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Setup all users&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;item.username&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;}}&quot;&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;item.state&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;default('present')&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;}}&quot;&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;shell&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;item.shell&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;default('/bin/bash')&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;}}&quot;&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;admin_group&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;}}&quot;&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;yes&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;item.username is defined&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;with_items&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;full_admin_list&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;}}&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Add SSH-keys to users&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;authorized_key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;item.0.username&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;}}&quot;&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;item.1&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;}}&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;with_subelements&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;full_admin_list&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;}}&quot;&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;keys.active&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;skip_missing&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;True&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;item.0.state != &quot;absent&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Remove old SSH-keys from users&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;authorized_key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;item.0.username&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;}}&quot;&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;item.1&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;}}&quot;&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;absent&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;with_subelements&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;full_admin_list&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;}}&quot;&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;keys.disabled&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;skip_missing&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;True&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;item.0.state != &quot;absent&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Add admin group to sudoers&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;lineinfile&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dest=/etc/sudoers regexp=&quot;^%{{ admin_group }}&quot; line=&quot;%{{ admin_group }} ALL=(ALL) NOPASSWD:ALL&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Disable Requiretty from sudoers&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;lineinfile&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dest=/etc/sudoers regexp=&quot;Defaults    requiretty&quot; line=&quot;#Defaults    requiretty&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;step-3-add-your-users&quot;&gt;Step 3: Add your users&lt;/h3&gt;
+
+&lt;p&gt;Edit this section from the provided example and add your username and ssh keys. You don’t have to have any disabled keys when you start.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;company_admin_list&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# This is how add users to servers&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Onni&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Hakala&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;onnimonni&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;active&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ssh-rsa&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;AAAAB3NzaC1yc2EAAAADAQABAAABgQC8gOdvYe12yaVQGMZXgn0qcd7vxMZhj1wsBTDFP/HnwdnbywbV/jt//yGex51cTkfqoP3YlkdgUfQeKJws4j7rxu04gx6uRBIlRcR+7wdcFgksFs4EFumTpZOSOwKybHVIbeIubLi76+mhB9L2JXD4f+TtkL0WJtvBDsCavGLHbru2JafS3K/6b97sU2vpmA/mDREKDpnuVxcMXsXlY0THgoxx70L7SjYsWMzRYiJc+FWzMqyi1yribhEUuUT4ch6B7DiBuPfWFQUlA2KkGbihsw+Kmyrw0e36z1MOEWAhroczt8zKjawWeYQ4qTwQRrjM8b+C2yfFgBpUqFAhAM0Lb9dh8V3xfui30zik2eW2LTQ4JtD2xNUflA+NvG2+fcB7w3ub+QNXI3zp+Joto627oB3j4Nao+s/XHOd0T8idHVrbfhoRK8UE4r6nKI8b5b7JrzaDipE1CjS2TsIixaj9a/VxYMtNE2A9JPGHsXlIPpi++GaW+rz4DZoqkArfsFE=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;onni@keksi.io&quot;&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;disabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ssh-rsa&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;AAAAB3NzaC1yc2EAAAADAQABAAABAQCsPoDM21LjBodcS3Kiq7ZDyNjFY4L03Yx2nSoSzdV7TKj00Zk8gh1hSSgI/xSDXiK+QEbfPuh/7+G3sfeDDNavjWUA1kdLve4D6MTI302C3HilK6wOZV67ezyAgdgf/VCHfx+no+bocw/05r1VamLrnFjDasWAQFFeFLaOnfQTArHQRl2Z8+4ZtZ1YQPhnleFQfEz546D3oWE1DS3vuXL1Qodz3gijtHhGnc3jaQM+7m/gg2vrcL6bc/vCtdunpA1fSQrBSx0kK4qdTWwc2LZDwKIT3YP5GthvgkFHsbCo2mNdBwWZfOBTYr5LBpz9YBcO7oVBWVEI00BdEPRFOYJL&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;onnimonni@Onni-MacBook-Air.local&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;shell&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/bin/bash&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;present&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# This is how you remove users&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Example&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Quitted&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Person&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;example-quitted-person&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;absent&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;step-4-add-your-servers&quot;&gt;Step 4: Add your servers&lt;/h3&gt;
+&lt;p&gt;Create file called &lt;code class=&quot;highlighter-rouge&quot;&gt;inventory&lt;/code&gt; with your servers in it:&lt;/p&gt;
+
+&lt;p&gt;Remember to use real IP addresses or hostnames instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;xxx.xxx.xxx.xxx&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;yyy.yyy.yyy.yyy&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[servers]
+xxx.xxx.xxx.xxx ansible_port=22
+yyy.yyy.yyy.yyy ansible_port=22
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You can use a custom ssh port by providing &lt;code class=&quot;highlighter-rouge&quot;&gt;ansible_port&lt;/code&gt; variable.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-5-install-ansible&quot;&gt;Step 5: Install ansible&lt;/h3&gt;
+
+&lt;p&gt;For OSX ansible can be installed with homebrew:&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;brew&lt;/span&gt;&lt;span class=&quot;kv&quot;&gt; install ansible
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Usually you want to use pip because it provides better version handling:&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;pip&lt;/span&gt;&lt;span class=&quot;kv&quot;&gt; install ansible
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;step-6-deploy-your-users&quot;&gt;Step 6: Deploy your users&lt;/h3&gt;
+
+&lt;p&gt;You can use any user which is already setupped in the servers. When starting with the new servers it’s usually &lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This deploys all provided users with ansible:&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ansible-playbook&lt;/span&gt;&lt;span class=&quot;kv&quot;&gt; -i inventory users.yml -u root --ask-pass
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;step-7-test-ssh-login&quot;&gt;Step 7: Test ssh login&lt;/h3&gt;
+&lt;p&gt;Now try to login with the users that you created. Everything should just work.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-8-store-your-changes-in-git&quot;&gt;Step 8: Store your changes in git&lt;/h3&gt;
+
+&lt;p&gt;Now commit all your changes:&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;kv&quot;&gt; add --all
+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;kv&quot;&gt; commit -am &quot;Initial user setup&quot;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;step-9-push-these-configs-in-private-git-repository&quot;&gt;Step 9: Push these configs in private git repository&lt;/h3&gt;
+
+&lt;p&gt;It’s usually a good idea to share this setup with your workmates.&lt;/p&gt;
+
+&lt;p&gt;We recommend Github, Gitlab and Bitbucket. This repository doesn’t contain anything sensitive like plaintext passwords so It’s okay to put it into 3rd party version control.&lt;/p&gt;
+
+&lt;h2 id=&quot;congratulations&quot;&gt;Congratulations&lt;/h2&gt;
+
+&lt;p&gt;You are now managing all of your users with ansible. When you need to have more users just add them into the users array and deploy again. Remember to share your changes with your coworkers and teach them how to use this setup.&lt;/p&gt;
+
+&lt;p&gt;If you want to learn more you should head into our example repo: &lt;a href=&quot;https://github.com/KeksiLabs/ansible-user-management-example&quot;&gt;KeksiLabs/ansible-user-management-example&lt;/a&gt;.&lt;/p&gt;
+
+
+    </content>
+  </entry>
+  
+
+</feed>

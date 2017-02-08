@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Keksi.io</title>
+    <atom:link href="https://keksi.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>https://keksi.io/</link>
+    <description>Full speed ahead in Web engineering</description>
+    <pubDate>Wed, 08 Feb 2017 22:53:13 +0000</pubDate>
+    
+      <item>
+        <title>SOCKS5 proxy with ssh tunnel and chrome in OSX</title>
+        <link>https://keksi.io/tutorials/2017/02/08/socks5-proxy-with-ssh-and-chrome-in-osx/</link>
+        <guid isPermaLink="true">https://keksi.io/tutorials/2017/02/08/socks5-proxy-with-ssh-and-chrome-in-osx/</guid>
+        <description>&lt;p&gt;Today I learned how to debug http services with chrome in remote environment.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 08 Feb 2017 00:00:00 +0000</pubDate>
+        
+        <author>onni@keksi.io (Onni Hakala)</author>
+        
+      </item>
+    
+      <item>
+        <title>Using NOKOGIRI_USE_SYSTEM_LIBRARIES in Travis CI breaks amp pages</title>
+        <link>https://keksi.io/gotcha/2016/12/14/using-nokogiriusesystemlibraries-in-travis-breaks-amp-pages-html/</link>
+        <guid isPermaLink="true">https://keksi.io/gotcha/2016/12/14/using-nokogiriusesystemlibraries-in-travis-breaks-amp-pages-html/</guid>
+        <description>&lt;p&gt;Travis might break your &lt;a href=&quot;https://www.ampproject.org/&quot;&gt;amp pages&lt;/a&gt; when you’re using &lt;code class=&quot;highlighter-rouge&quot;&gt;NOKOGIRI_USE_SYSTEM_LIBRARIES: true&lt;/code&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 14 Dec 2016 00:00:00 +0000</pubDate>
+        
+        <author>onni@keksi.io (Onni Hakala)</author>
+        
+      </item>
+    
+      <item>
+        <title>Using css flexbox for accessible mobile menus</title>
+        <link>https://keksi.io/web/2016/12/08/using-css-flexbox-for-accessible-mobile-menus/</link>
+        <guid isPermaLink="true">https://keksi.io/web/2016/12/08/using-css-flexbox-for-accessible-mobile-menus/</guid>
+        <description>&lt;p&gt;Lately I have been working more and more with servers. Today I wanted to switch more into the frontend side of things and decided to give flexbox few hours.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 08 Dec 2016 00:00:00 +0000</pubDate>
+        
+        <author>onni@keksi.io (Onni Hakala)</author>
+        
+      </item>
+    
+      <item>
+        <title>How to manage remote server users with ansible</title>
+        <link>https://keksi.io/tutorials/2016/12/05/how-to-manage-remote-server-users-with-ansible/</link>
+        <guid isPermaLink="true">https://keksi.io/tutorials/2016/12/05/how-to-manage-remote-server-users-with-ansible/</guid>
+        <description>&lt;p&gt;This post shows an powerful example of how to do user access management for admin/developer user accounts for medium to big sized web agencies. Managing users efficiently and securely in big company usually includes a clunky process like LDAP. Today I will show you how to use git and ansible instead.&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 05 Dec 2016 00:00:00 +0000</pubDate>
+        
+        <author>onni@keksi.io (Onni Hakala)</author>
+        
+      </item>
+    
+  </channel>
+</rss>
