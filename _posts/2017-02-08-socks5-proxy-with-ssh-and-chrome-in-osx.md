@@ -4,7 +4,7 @@ title: SOCKS5 proxy with ssh tunnel and chrome in OSX
 category: tutorials
 technology: chrome
 author: onnimonni
-tags: ssh socks5 chrome
+tags: ssh socks5 proxy chrome
 last_modified_at: 2017-02-08 23:32:45 +0200
 ---
 
