@@ -21,11 +21,11 @@ $ ssh -D 1337 -f -C -q -N user@remote -p 2222
 # Symlink chrome binary to PATH
 # ( This is optional )
 $ ln -s /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
-  /usr/local/bin/chrome
+	/usr/local/bin/chrome
 
 # Open chrome using the socks5 proxy in port 1337
 $ chrome --proxy-server="socks5://127.0.0.1:1337" \
-  --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"
+	--host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"
 ```
 
 After this new chrome window opens and all requests except `localhost` are resolved through the remote machine.
