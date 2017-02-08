@@ -11,7 +11,7 @@
     {% endif%}
     contains
     <span itemprop="wordCount" >{{ page.content | markdownify | strip_html | number_of_words }}</span> words
-    and takes about {% include data/time-to-read.html %} minutes to read.
+    and takes about <span>{% include data/time-to-read.html %}</span> minutes to read.
     <meta itemprop="timeRequired" content="P{{ time_to_read_minutes | strip_newlines | replace:' ','' }}" />
     {% if page.feature-img %}
     <meta itemprop="image" content="{{ site.url }}{{ site.baseurl }}/{{ page.feature-img }}" />
