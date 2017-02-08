@@ -1,21 +1,21 @@
 ---
 layout: post
-title: "Socks5 proxy with ssh and chrome in OSX"
+title: Socks5 proxy with ssh and chrome in OSX
 category: tutorials
 technology: chrome
 author: onnimonni
 tags: ssh socks5 chrome
-date: 2017-02-08 23:26:33
+last_modified_at: 2017-02-08 23:32:45 +0200
 ---
 
 Today I learned how to debug http services with chrome in remote environment.
+
 I needed to debug http2 services which were only available in remote environment.
 
 Here are the commands that you need:
 ```bash
-# Open socks5 proxy to port 1337 and connect to remote host with port 2222
+# Open socks5 proxy to local port 1337 which connects to remote host using ssh into port 2222
 $ ssh -D 1337 -f -C -q -N user@remote -p 2222
-
 
 # Symlink chrome binary to PATH
 # ( This is optional )
