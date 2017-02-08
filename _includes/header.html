@@ -3,7 +3,7 @@
         <a href="{{ site.baseurl }}/">
             {% if site.theme_settings.avatar %}
                 {% if page.layout == 'amp' %}
-                <amp-img class="avatar" src="{{ site.baseurl }}/{{ site.theme_settings.avatar }}" width="44" height="44"
+                <amp-img class="avatar" src="{{ site.baseurl }}/{{ site.theme_settings.avatar_amp }}" width="44" height="44"
     layout="fixed" alt="{{ site.theme_settings.avatar_alt_text}}"/></amp-img>
                 {% else %}
                 {% picture_tag class="avatar" src=site.theme_settings.avatar width="44" alt=site.theme_settings.avatar_alt_text %}

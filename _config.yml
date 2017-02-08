@@ -50,6 +50,7 @@ theme_settings:
   legal_name: Keksi Labs Oy
 
   avatar: logo.svg
+  avatar_amp: img/keksi-labs-logo-small.png
   avatar_alt_text: Keksi Labs Logo
   gravatar: # Email MD5 hash
   description: "Full speed ahead in Web engineering" # used by search engines
