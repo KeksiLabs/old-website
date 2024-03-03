@@ -1,7 +1,5 @@
 # Keksi.io
-[![Build Status](https://travis-ci.org/KeksiLabs/keksi.io.svg?branch=master)](https://travis-ci.org/KeksiLabs/keksi.io) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
-
-Source code for [https://keksi.io](https://keksi.io)
+This repository is **archived**. This used to contain a engineering blog Onni wrote near 2015.
 
 ## Setup
 ```
